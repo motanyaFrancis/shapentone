@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+{% include 'header.html' %}
+
+<!-- pricing table  -->
+<section id="pricing-tables">
+    <div class="container">
+        <div class="row justify-content-center">
+            {% for data in subscriptions %}
+            <div
+                class="col-md-3 col-sm-6 col-11 color-{%if data.name == 'Bronze' %}1{% elif data.name == 'Silver' %}2{% elif data.name == 'Gold' %}3{% elif data.name == 'Platinum' %}4{%endif%}">
+                <div class="single-table text-center">
+                    <div class="plan-header">
+                        <h3>{{data.name}}</h3>
+                        <p></p>
+                        {%if data.name == 'Bronze' %}
+                        <img height="100"
+                            src="https://expl-media.azureedge.net/mediacontainer/medialibraries/explore/explore-media-v2/icons/explore_loyalty_club_bronze.png"
+                            width="140" />
+                        {% elif data.name == 'Silver' %}
+                        <img height="100"
+                            src="https://expl-media.azureedge.net/mediacontainer/medialibraries/explore/explore-media-v2/icons/explore_loyalty_club_sil.png"
+                            width="140" />
+                        {% elif data.name == 'Gold' %}
+                        <img height="100"
+                            src="https://expl-media.azureedge.net/mediacontainer/medialibraries/explore/explore-media-v2/icons/explore_loyalty_club_gold.png"
+                            width="140" />
+                        {% elif data.name == 'Platinum' %}
+                        <img height="100"
+                            src="https://expl-media.azureedge.net/mediacontainer/medialibraries/explore/explore-media-v2/icons/explore_loyalty_club_platinum.png"
+                            width="140" />
+                        {%endif%}
+    
+                    </div>
+                    <p>KES {{data.amount|floatformat:"0"}}/-</p>
+    
+                    <ul>
+    
+                        {% for feature in data.subscriptionfeatures_set.all %}
+                        <li>
+                            <img src="{% static 'logo/check.png' %}" alt="" style="height: 1em; margin-top: 5px;">
+                            <p>{{feature.title}}</p>
+                        </li>
+                        {% endfor %}
+                        <!-- <li>
+                    <img src="{% static 'logo/check.png' %}" alt="" style="height: 1em; margin-top: 5px;">
+                    <p>Get early access to discounts and special offers</p>
+                  </li>
+                  <li>
+                    <img src="{% static 'logo/check.png' %}" alt="" style="height: 1em; margin-top: 5px;">
+                    <p>Receive exclusive discounts with select partners</p>
+                  </li> -->
+                    </ul>
+                </div>
+                {% if user.is_authenticated %}
+                <a href="{% url 'payment' data.id %}" class="btn btn-primary px-5 py-3 rounded-5 mt-auto ">Get Started</a>
+                {% else%}
+                <a href="/signup/" class="btn btn-primary px-5 py-3 rounded-5 mt-auto ">Get Started</a>
+                {%endif%}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+  </section>
+{% include 'footer.html' %}
+{%endblock%}

@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+{% include 'header.html' %}
+<div class="image-aboutus-banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="lg-text">About Us</h1>
+                <!-- <p class="image-aboutus-para">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="aboutus-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-sm-12">
+                <div class="aboutus">
+                    <h2 class="aboutus-title">Shape N' Tone 360</h2>
+                    <p class="aboutus-text"><b>Shape n Tone 360</b> is an industry leader in health and fitness
+                        with
+                        experienced professional personal trainers,nutritionists and health & wellness experts
+                        (boasting over 500,000 working hours)well-equipped with modern fitness training methods
+                        and
+                        nutritional knowledge to help you reach your goals and beyond.</p>
+                    <p class="aboutus-text">Whether you want to lose weight, tone up, gain lean muscle
+                        or you are happy as you are but would like a healthier lifestyle, <b>Shape n Tone
+                            360</b> is
+                        the right choice for you.</p>
+                    <a class="aboutus-more btn btn-primary" href="{% url 'login' %}">Read more</a>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="aboutus-banner">
+                    <img src="{% static 'img/image_4.png' %}" class="w-100" alt="">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="section aboutus-section d-flex justify-content-center pt-0 pb-5 mt-3" id="explore">
+    <div class="col-md-8 col-sm-12 pt-sm-5">
+        <div class="feature">
+            <div class="feature-box ">
+                <div class="clearfix">
+                    <div class="feature-content text-white w-100 px-3">
+                        <h4 class="py-3 text-white">Programs & Workouts</h4>
+                        <p class="text-white">
+                            Our programs and workouts are structured to fit into your lifestyle. Our
+                            Trainers are great listeners,analysts and motivators who put clients results
+                            first and foremost. They recognise and adapt to the needs of the client and
+                            are flexible and creative enough to deal with any goal, barrier, aspiration and
+                            dream. Our trainers not only offer a variety of workouts, which is essential
+                            to keep you interested-they are aware that-too much variety might inhibit your
+                            progress.They will help you stick with a training programme long enough,
+                            that you see real results.They will equip you with both the physical resources
+                            and mental tools to push your boundaries, escape your inertia, and get the body
+                            youdeserve.
+                        </p>
+                        <figure>
+                            <blockquote class="blockquote py-4">
+                                <span>"
+                                    We transform every body for short term impact and real long term
+                                    change."
+                                </span>
+                            </blockquote>
+                            <figcaption class="blockquote-footer mb-4">
+                                <cite title="Source Title">Victor Fitness</cite>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% include 'newsletter.html' %}
+<!-- Discount -->
+<div class="section" id="discount">
+    <div class="container d-flex gap-5 justify-content-center align-items-center">
+        <div class="visual">
+            <img src="{% static 'img/fitness-6.jpg' %}" alt="" />
+        </div>
+        <div class="text">
+            <h2 class="primary mb-5">
+                Start your journey to a fitter, healthier, happier you
+            </h2>
+
+            <p class="tertiary mb-5">
+                Guided workouts and clear exercise illustrations that are easy to follow with confidence.
+            </p>
+
+            <a href="/#pricing-tables" class="btn btn-primary px-5 py-3 rounded-5 mt-4">Book Now</a>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- End Discount -->
+{% include 'footer.html' %}
+{% endblock %}

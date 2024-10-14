@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/payment.css' %}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/material-ui/4.12.4/index.js"
+    integrity="sha512-wEnX3bNd/CdyrOFR0KIGlHihK/w9x3/It8Vc18aymEF/F/f1q0Mq8T+GSxF1wYUACLEGECapuIYQdQlKY1LBJw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% endblock %}
+{% block meta_links %}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title> Order confirmation </title>
+<meta name="robots" content="noindex,nofollow" />
+<meta name="viewport" content="width=device-width; initial-scale=1.0;" />
+{%endblock%}
+{% block title %}
+Invoice
+{%endblock%}
+{% block body %}
+<div class="container d-flex justify-content-center">
+  <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <select name="package">
+          <option value="Basic">Basic Package</option>
+          <option value="Standard">Standard Package</option>
+          <option value="Premium">Premium Package</option>
+      </select>
+      <button type="submit">Create Invoice</button>
+  </form>
+</div>
+ 
+  
+{%endblock%}

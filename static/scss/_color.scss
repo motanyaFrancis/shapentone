@@ -1,0 +1,19 @@
+$base-color: #afca0b;
+$base-color-dark: rgb(82, 94, 6);
+$white: #fcfcfc;
+$black: #0c0c0c;
+$grey: #83817e;
+
+// Table colors
+$table-bg: #ffffff;
+$plan-header-bg: #ad8a56; //change
+$plan-header-bg-2: #d7d7d7; //change
+$plan-header-bg-3: #c9b037; //change
+$plan-header-bg-4: #b4b4b4; //change
+
+$single-table-bg: #fff;
+$table-header: #fff;
+$table-border-color: lighten($plan-header-bg, 60%);
+$plan-price-color: #fff;
+$plan-price-month-color: #8394ae;
+$plan-price-border: lighten($plan-header-bg, 20%);

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{%block title %}
+Login
+{% endblock%}
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/material-ui/4.12.4/index.js"
+    integrity="sha512-wEnX3bNd/CdyrOFR0KIGlHihK/w9x3/It8Vc18aymEF/F/f1q0Mq8T+GSxF1wYUACLEGECapuIYQdQlKY1LBJw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<section class="login-container">
+    <article class="form-container position-relative">
+        <div class="intro">
+            <h1>Login</h1>
+            <p>Are you new to Shape N' Tone 360? Please  <a href="/register/">Sign Up</a></p>
+        </div>
+        <form class="form" method="post" action="/login/">
+            {% csrf_token %}
+            <div class="email-input">
+                <span class="material-icons icon-size"> mail_outline </span>
+                <span id="seperator"></span>
+                <div class="input-container">
+                    <p class="sub-title">Email</p>
+                    <!-- <input type="email" name="email" id="username" required/> -->
+                    {{ form.username }}
+                </div>
+            </div>
+
+            <div class="email-input">
+                <span class="material-icons icon-size"> password </span>
+                <span id="seperator"></span>
+                <div class="input-container">
+                    <p class="sub-title">Password</p>
+                    <!-- <input type="password" name="password" id="password" required/> -->
+                    {{ form.password }}
+                </div>
+            </div>
+            <!-- <a href="{% url 'dashboard' %}" id="submit" class="text-center">Continue</a> -->
+            <button class="btn btn-primary btn-sm" type="submit" id="submit">Continue</button>
+        </form>
+
+        <!-- <article class="outro">
+            <div class="ending">
+                <p>Or Continue With</p>
+            </div>
+            <div class="socials">
+                <a class="social-btn" href="" id="g-btn">
+                    <p>Google</p>
+                </a>
+                <a class="social-btn" href="" id="a-btn">
+                    <p>Apple</p>
+                </a>
+                <a class="social-btn" href="" id="fb-btn">
+                    <p>Facebook</p>
+                </a>
+            </div>
+        </article> -->
+    </article>
+    <article class="login-side-bg"></article>
+
+    <div class="position-absolute home-link">
+        <a href="/">
+            <div class="fs-4  m-2 p-2 ">
+                <i class="las la-arrow-left"></i>
+            </div>
+        </a>
+    </div>
+
+</section>
+
+{% endblock %}

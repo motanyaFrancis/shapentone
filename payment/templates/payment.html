@@ -1,0 +1,465 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/payment.css' %}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/material-ui/4.12.4/index.js"
+    integrity="sha512-wEnX3bNd/CdyrOFR0KIGlHihK/w9x3/It8Vc18aymEF/F/f1q0Mq8T+GSxF1wYUACLEGECapuIYQdQlKY1LBJw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/intlTelInput.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/utils.js"></script>
+{% endblock %}
+{% block title %}
+Checkout
+{%endblock%}
+{% block body %}
+<!-- partial:index.partial.html -->
+
+<div class="main-back">
+    <div class="container m-auto bg-white p-5 bod-3">
+        <div class="row">
+            <!-- CARD FORM -->
+            <div class="col-lg-8 col-md-12">
+                <form method="post" action="">
+                    <div class="header flex-between flex-vertical-center">
+                        <div class="flex-vertical-center">
+                            <i class="ai-bitcoin-fill size-xl pr-sm f-main-color"></i>
+                            <svg width="200" height="32" viewBox="0 0 2500 400" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <clipPath clipPathUnits="userSpaceOnUse" id="a">
+                                        <path d="M0 1080h1920V0H0Z" />
+                                    </clipPath>
+                                </defs>
+                                <path d="M0 0v-108.313h37.113v-17.9H-19.05V0Z"
+                                    style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                    transform="matrix(1.33333 0 0 -1.33333 136.061 110.81)" />
+                                <path d="M184.275 480.825h-19.05v126.213h19.05z"
+                                    style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                    transform="matrix(1.33333 0 0 -1.33333 -10.667 920.193)" />
+                                <g clip-path="url(#a)" transform="matrix(1.33333 0 0 -1.33333 -10.667 920.193)">
+                                    <path
+                                        d="M0 0h7.113c17.5 0 26.237 6.725 26.237 20.188 0 13.025-9.025 19.538-27.063 19.538H0Zm0-17.65v-51.262h-19.05V57.3H2.537c10.575 0 18.563-.737 23.95-2.212 5.45-1.475 10.237-4.25 14.387-8.338 7.25-7.088 10.875-16.025 10.875-26.813 0-11.55-3.875-20.712-11.612-27.462C32.4-14.287 21.962-17.663 8.825-17.663Z"
+                                        style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                        transform="translate(233.648 549.733)" />
+                                    <path
+                                        d="m0 0-18.725 42.912L-38.338 0Zm7.763-17.9h-54.038l-14.063-30.65h-20.525L-18.4 85.6 41.85-48.562H21.012Z"
+                                        style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                        transform="translate(362.154 529.378)" />
+                                    <path d="M0 0v134.8l92.05-96.3v87.713h19.05v-133.9L19.05 88.375V0Z"
+                                        style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                        transform="translate(471.45 480.82)" />
+                                    <path
+                                        d="m0 0-18.725 42.912L-38.338 0Zm7.763-17.9h-54.038l-14.063-30.65H-80.85L-18.388 85.6l60.25-134.162h-20.85Z"
+                                        style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                        transform="translate(680.152 529.378)" />
+                                    <path
+                                        d="M0 0c25.738-6.475 47.337 26.8 47.337 26.8 21.275-33.237 38.5-6.475 38.5-6.475S69.95-6.475 19.375-5.412z"
+                                        style="fill:#9f4a3e;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                        transform="translate(1034.372 544.11)" />
+                                    <path d="M0 0s-36.712-75.638-99.8-55.613c0 0 115.162-35.5 157.375 27.837z"
+                                        style="fill:#da3939;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                        transform="translate(1133.806 599.265)" />
+                                    <path
+                                        d="M0 0v-103.888h-117.788v125.8a60.75 60.75 0 0 0-7.538 2.3v-140.8c0-10.65 7.412-19.3 16.563-19.3h99.75c9.137 0 16.55 8.65 16.55 19.3V5.187C5.063 3.35 2.163 1.412 0 0"
+                                        style="fill:#e5eadb;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                        transform="translate(1169.904 546)" />
+                                    <path
+                                        d="M0 0h117.8v-62.75l7.525-4.35V1.725c0 10.662-7.412 19.3-16.55 19.3H9.025c-9.137 0-16.55-8.637-16.55-19.3v-88.138c3.362.475 5.913 1.262 7.525 1.9z"
+                                        style="fill:#e5eadb;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                        transform="translate(1052.107 649.158)" />
+                                    <path
+                                        d="M0 0v-75.487h-46.262V-7.55c0 18.988-7.8 27.025-19.975 27.025-13.388 0-23.125-9.012-23.125-29.462v-65.5h-46.263V-7.55c0 18.988-7.55 27.025-19.975 27.025-13.637 0-23.375-9.012-23.375-29.462v-65.5h-46.275V56.488h44.075V42.6c9.988 10.713 23.863 16.075 39.45 16.075 18.012 0 33.35-6.575 42.613-20.7 10.462 13.15 26.775 20.7 45.775 20.7C-22.65 58.675 0 40.912 0 0"
+                                        style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                        transform="translate(1024.46 558.283)" />
+                                    <path
+                                        d="M0 0c0 19.963-12.175 31.412-27.763 31.412-15.575 0-27.763-11.45-27.763-31.412 0-19.975 12.175-31.412 27.763-31.412S0-19.975 0 0m46.75 0c0-41.887-28.975-68.188-64.775-68.188-15.337 0-27.75 4.625-36.763 13.875v-58.925h-46.262V65.975h44.075V52.838C-48.2 63.3-35.3 68.175-18.025 68.175c35.8 0 64.775-26.288 64.775-68.175"
+                                        style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                        transform="translate(1302.8 548.788)" />
+                                    <path
+                                        d="M0 0h54.063C51.625 13.887 41.4 22.637 27.025 22.637 12.663 22.637 2.688 13.887 0 0m96.662-24.35H.737c3.887-13.388 15.337-21.188 32.375-21.188 12.9 0 21.425 3.65 30.438 11.45L87.9-59.413C75.237-73.538 56.737-80.851 31.662-80.851c-47 0-77.438 28.975-77.438 68.425 0 39.688 30.925 67.938 72.563 67.938C65.75 55.512 97.4 30.675 97.4-12.9c0-3.413-.488-7.8-.737-11.45"
+                                        style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                        transform="translate(1408.465 561.45)" />
+                                    <path
+                                        d="m0 0 13.875 31.65C26.05 24.112 43.825 19.475 59.9 19.475c15.588 0 20.688 3.413 20.688 9.012 0 17.775-77.912-2.438-77.912 50.412 0 24.838 22.887 43.825 64.287 43.825 18.5 0 38.95-3.887 52.1-11.2l-13.875-31.4a77.387 77.387 0 0 1-37.987 9.738c-15.575 0-21.188-4.375-21.188-9.25 0-18.262 77.675 1.462 77.675-50.888 0-24.35-22.4-43.35-65.25-43.35C36.037-13.637 12.912-8.037 0 0"
+                                        style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                        transform="translate(1516.82 494.243)" />
+                                    <path
+                                        d="M0 0c0 19.975-12.175 31.163-27.75 31.163-15.588 0-27.763-11.2-27.763-31.163 0-20.213 12.175-31.65 27.763-31.65C-12.175-31.65 0-20.213 0 0m45.538 65.738V-66.225H1.462v13.15C-7.3-63.55-20.213-68.425-37.5-68.425c-35.8 0-64.763 26.3-64.763 68.425 0 41.875 28.975 67.938 64.763 67.938 15.337 0 27.763-4.387 36.775-13.637v11.438z"
+                                        style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                        transform="translate(1754.466 549.032)" />
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="card-data flex-fill flex-vertical">
+                        <!-- Card Number -->
+                        <div class="flex-between flex-vertical-center">
+                            <div class="card-property-title">
+                                <strong>M-pesa Number <span class="text-danger">*</span></strong>
+                                <span>Enter the number You wish to pay with</span>
+                            </div>
+                        </div>
+
+                        <!-- Card Field -->
+                        <div class="flex-between my-5">
+                            <div class="card-number flex-vertical-center flex-fill">
+                                <div class="card-number-field flex-vertical-center flex-fill">
+                                    <svg width="50" height="3.438mm" viewBox="0 0 1454.423 377.953" xml:space="preserve"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <defs>
+                                            <clipPath clipPathUnits="userSpaceOnUse" id="a">
+                                                <path d="M0 1080h1920V0H0Z" />
+                                            </clipPath>
+                                        </defs>
+                                        <g clip-path="url(#a)"
+                                            transform="matrix(1.30794 0 0 -1.30794 -972.598 895.457)">
+                                            <path
+                                                d="M0 0c25.738-6.475 47.337 26.8 47.337 26.8 21.275-33.237 38.5-6.475 38.5-6.475S69.95-6.475 19.375-5.412z"
+                                                style="fill:#9f4a3e;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                                transform="translate(1034.372 544.11)" />
+                                            <path d="M0 0s-36.712-75.638-99.8-55.613c0 0 115.162-35.5 157.375 27.837z"
+                                                style="fill:#da3939;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                                transform="translate(1133.806 599.265)" />
+                                            <path
+                                                d="M0 0v-103.888h-117.788v125.8a60.75 60.75 0 0 0-7.538 2.3v-140.8c0-10.65 7.412-19.3 16.563-19.3h99.75c9.137 0 16.55 8.65 16.55 19.3V5.187C5.063 3.35 2.163 1.412 0 0"
+                                                style="fill:#e5eadb;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                                transform="translate(1169.904 546)" />
+                                            <path
+                                                d="M0 0h117.8v-62.75l7.525-4.35V1.725c0 10.662-7.412 19.3-16.55 19.3H9.025c-9.137 0-16.55-8.637-16.55-19.3v-88.138c3.362.475 5.913 1.262 7.525 1.9z"
+                                                style="fill:#e5eadb;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                                transform="translate(1052.107 649.158)" />
+                                            <path
+                                                d="M0 0v-75.487h-46.262V-7.55c0 18.988-7.8 27.025-19.975 27.025-13.388 0-23.125-9.012-23.125-29.462v-65.5h-46.263V-7.55c0 18.988-7.55 27.025-19.975 27.025-13.637 0-23.375-9.012-23.375-29.462v-65.5h-46.275V56.488h44.075V42.6c9.988 10.713 23.863 16.075 39.45 16.075 18.012 0 33.35-6.575 42.613-20.7 10.462 13.15 26.775 20.7 45.775 20.7C-22.65 58.675 0 40.912 0 0"
+                                                style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                                transform="translate(1024.46 558.283)" />
+                                            <path
+                                                d="M0 0c0 19.963-12.175 31.412-27.763 31.412-15.575 0-27.763-11.45-27.763-31.412 0-19.975 12.175-31.412 27.763-31.412C-12.175-31.412 0-19.975 0 0m46.75 0c0-41.887-28.975-68.188-64.775-68.188-15.337 0-27.75 4.625-36.763 13.875v-58.925h-46.262V65.975h44.075V52.838C-48.2 63.3-35.3 68.175-18.025 68.175c35.8 0 64.775-26.288 64.775-68.175"
+                                                style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                                transform="translate(1302.8 548.788)" />
+                                            <path
+                                                d="M0 0h54.063C51.625 13.887 41.4 22.637 27.025 22.637 12.663 22.637 2.688 13.887 0 0m96.662-24.35H.737c3.887-13.388 15.337-21.188 32.375-21.188 12.9 0 21.425 3.65 30.438 11.45L87.9-59.413C75.237-73.538 56.737-80.851 31.662-80.851c-47 0-77.438 28.975-77.438 68.425 0 39.688 30.925 67.938 72.563 67.938C65.75 55.512 97.4 30.675 97.4-12.9c0-3.413-.488-7.8-.737-11.45"
+                                                style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                                transform="translate(1408.465 561.45)" />
+                                            <path
+                                                d="m0 0 13.875 31.65C26.05 24.112 43.825 19.475 59.9 19.475c15.588 0 20.688 3.413 20.688 9.012 0 17.775-77.912-2.438-77.912 50.412 0 24.838 22.887 43.825 64.287 43.825 18.5 0 38.95-3.887 52.1-11.2l-13.875-31.4a77.387 77.387 0 0 1-37.987 9.738c-15.575 0-21.188-4.375-21.188-9.25 0-18.262 77.675 1.462 77.675-50.888 0-24.35-22.4-43.35-65.25-43.35C36.037-13.637 12.912-8.037 0 0"
+                                                style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                                transform="translate(1516.82 494.243)" />
+                                            <path
+                                                d="M0 0c0 19.975-12.175 31.163-27.75 31.163-15.588 0-27.763-11.2-27.763-31.163 0-20.213 12.175-31.65 27.763-31.65C-12.175-31.65 0-20.213 0 0m45.538 65.738V-66.225H1.462v13.15C-7.3-63.55-20.213-68.425-37.5-68.425c-35.8 0-64.763 26.3-64.763 68.425 0 41.875 28.975 67.938 64.763 67.938 15.337 0 27.763-4.387 36.775-13.637v11.438z"
+                                                style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                                transform="translate(1754.466 549.032)" />
+                                        </g>
+                                    </svg>
+                                    <input type="tel" placeholder="254 7XX XXXXXX" class="form-control"
+                                        id="phone_number" onkeypress="return onlyNumberKey(event)" maxlength="12"
+                                        name="phoneNumber" data-bound="carddigits_mock" data-def="000 000 000000"
+                                        required />
+                                </div>
+                                <i class="ai-circle-check-fill size-lg f-main-color"></i>
+                                <input type="number" name="amount" id="amount" value="{{subscription.invoiced_amount}}"
+                                    hidden>
+                                <input type="text" name="account_reference" id="account_reference"
+                                    value="{{subscription.invoice_no}}" hidden>
+                            </div>
+                        </div>
+
+
+                        <!-- Expiry Date -->
+                        <!-- <div class="flex-between">
+                            <div class="card-property-title">
+                                <strong>Expiry Date</strong>
+                                <span>Enter the expiration date of the card</span>
+                            </div>
+                            <div class="card-property-value flex-vertical-center">
+                                <div class="input-container half-width">
+                                    <input class="numbers month-own" data-def="00" type="text" data-bound="mm_mock"
+                                        placeholder="MM" />
+                                </div>
+                                <span class="m-md">/</span>
+                                <div class="input-container half-width">
+                                    <input class="numbers year-own" data-def="01" type="text" data-bound="yy_mock"
+                                        placeholder="YYYY" />
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <!-- CCV Number -->
+                        <!-- <div class="flex-between">
+                            <div class="card-property-title">
+                                <strong>CVC Number</strong>
+                                <span>Enter card verification code from the back of the
+                                    card</span>
+                            </div>
+                            <div class="card-property-value">
+                                <div class="input-container">
+                                    <input id="cvc" placeholder="Card CVV" maxlength="3"
+                                        onkeypress="return onlyNumberKey(event)" type="password" />
+                                    <i id="cvc_toggler" data-target="cvc" class="ai-eye-open pointer"></i>
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <!-- Name -->
+                        <div class="flex-between mb-5 d-none">
+                            <div class="card-property-title">
+                                <strong>Name</strong>
+                                <span>Enter your name</span>
+                            </div>
+                            <div class="card-property-value">
+                                <div class="input-container">
+                                    <input id="name" data-bound="name_mock" data-def="Mr. Cardholder" type="text"
+                                        class="uppercase" placeholder="Your FullNAME" value="{{subscription.user}}" />
+                                    <i class="ai-person"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- <div class="flex-between">
+                            <div class="card-property-title">
+                                <strong>Mobile No.</strong>
+                                <span>Enter Mobile No. for your contact(optional)</span>
+                            </div>
+                            <div class="card-property-value">
+                                <div class="input-container">
+                                    <input id="phone" type="text" placeholder="Your Mobile No." />
+                                    <i class="ai-phone"></i>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="action flex-center">
+                        <!-- <form action="https://66a4-196-207-151-138.ngrok-free.app/pay" method="get"> -->
+                        {% csrf_token %}
+                        <button type="submit" class="b-main-color pointer"> Pay Now</button>
+                        <!-- </form> -->
+                        <!-- <button type="submit" class="b-main-color pointer">
+                            Pay Now
+                        </button> -->
+                        <a href="/" class="b-main-color pointer text-center">
+                            cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- SIDEBAR -->
+            <div class="col-lg-4 col-md-12 py-5">
+                <div></div>
+                <div class="purchase-section flex-fill flex-vertical">
+                    <div class="card-mockup flex-vertical">
+                        <svg width="100" height="6.876mm" viewBox="0 0 1454.423 377.953" xml:space="preserve"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <clipPath clipPathUnits="userSpaceOnUse" id="a">
+                                    <path d="M0 1080h1920V0H0Z" />
+                                </clipPath>
+                            </defs>
+                            <g clip-path="url(#a)" transform="matrix(1.30794 0 0 -1.30794 -972.598 895.457)">
+                                <path
+                                    d="M0 0c25.738-6.475 47.337 26.8 47.337 26.8 21.275-33.237 38.5-6.475 38.5-6.475S69.95-6.475 19.375-5.412z"
+                                    style="fill:#9f4a3e;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                    transform="translate(1034.372 544.11)" />
+                                <path d="M0 0s-36.712-75.638-99.8-55.613c0 0 115.162-35.5 157.375 27.837z"
+                                    style="fill:#da3939;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                    transform="translate(1133.806 599.265)" />
+                                <path
+                                    d="M0 0v-103.888h-117.788v125.8a60.75 60.75 0 0 0-7.538 2.3v-140.8c0-10.65 7.412-19.3 16.563-19.3h99.75c9.137 0 16.55 8.65 16.55 19.3V5.187C5.063 3.35 2.163 1.412 0 0"
+                                    style="fill:#e5eadb;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                    transform="translate(1169.904 546)" />
+                                <path
+                                    d="M0 0h117.8v-62.75l7.525-4.35V1.725c0 10.662-7.412 19.3-16.55 19.3H9.025c-9.137 0-16.55-8.637-16.55-19.3v-88.138c3.362.475 5.913 1.262 7.525 1.9z"
+                                    style="fill:#e5eadb;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                    transform="translate(1052.107 649.158)" />
+                                <path
+                                    d="M0 0v-75.487h-46.262V-7.55c0 18.988-7.8 27.025-19.975 27.025-13.388 0-23.125-9.012-23.125-29.462v-65.5h-46.263V-7.55c0 18.988-7.55 27.025-19.975 27.025-13.637 0-23.375-9.012-23.375-29.462v-65.5h-46.275V56.488h44.075V42.6c9.988 10.713 23.863 16.075 39.45 16.075 18.012 0 33.35-6.575 42.613-20.7 10.462 13.15 26.775 20.7 45.775 20.7C-22.65 58.675 0 40.912 0 0"
+                                    style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                    transform="translate(1024.46 558.283)" />
+                                <path
+                                    d="M0 0c0 19.963-12.175 31.412-27.763 31.412-15.575 0-27.763-11.45-27.763-31.412 0-19.975 12.175-31.412 27.763-31.412C-12.175-31.412 0-19.975 0 0m46.75 0c0-41.887-28.975-68.188-64.775-68.188-15.337 0-27.75 4.625-36.763 13.875v-58.925h-46.262V65.975h44.075V52.838C-48.2 63.3-35.3 68.175-18.025 68.175c35.8 0 64.775-26.288 64.775-68.175"
+                                    style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                    transform="translate(1302.8 548.788)" />
+                                <path
+                                    d="M0 0h54.063C51.625 13.887 41.4 22.637 27.025 22.637 12.663 22.637 2.688 13.887 0 0m96.662-24.35H.737c3.887-13.388 15.337-21.188 32.375-21.188 12.9 0 21.425 3.65 30.438 11.45L87.9-59.413C75.237-73.538 56.737-80.851 31.662-80.851c-47 0-77.438 28.975-77.438 68.425 0 39.688 30.925 67.938 72.563 67.938C65.75 55.512 97.4 30.675 97.4-12.9c0-3.413-.488-7.8-.737-11.45"
+                                    style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                    transform="translate(1408.465 561.45)" />
+                                <path
+                                    d="m0 0 13.875 31.65C26.05 24.112 43.825 19.475 59.9 19.475c15.588 0 20.688 3.413 20.688 9.012 0 17.775-77.912-2.438-77.912 50.412 0 24.838 22.887 43.825 64.287 43.825 18.5 0 38.95-3.887 52.1-11.2l-13.875-31.4a77.387 77.387 0 0 1-37.987 9.738c-15.575 0-21.188-4.375-21.188-9.25 0-18.262 77.675 1.462 77.675-50.888 0-24.35-22.4-43.35-65.25-43.35C36.037-13.637 12.912-8.037 0 0"
+                                    style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                    transform="translate(1516.82 494.243)" />
+                                <path
+                                    d="M0 0c0 19.975-12.175 31.163-27.75 31.163-15.588 0-27.763-11.2-27.763-31.163 0-20.213 12.175-31.65 27.763-31.65C-12.175-31.65 0-20.213 0 0m45.538 65.738V-66.225H1.462v13.15C-7.3-63.55-20.213-68.425-37.5-68.425c-35.8 0-64.763 26.3-64.763 68.425 0 41.875 28.975 67.938 64.763 67.938 15.337 0 27.763-4.387 36.775-13.637v11.438z"
+                                    style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                    transform="translate(1754.466 549.032)" />
+                            </g>
+                        </svg>
+                        <div>
+                            <strong>
+                                <div id="name_mock" class="size-md pb-sm pt-3 uppercase ellipsis">
+                                    {{subscription.user}}
+                                </div>
+                            </strong>
+                            <div class="size-md pb-md">
+                                <strong>
+                                    <span id="carddigits_mock">07XX XXXXXX</span>
+                                </strong>
+                            </div>
+                            <div class="flex-between flex-vertical-center">
+                                <strong class="size-md">
+                                    <span>Check out Details</span>
+                                    <!-- <span>Expiry Date : </span><span id="mm_mock">00</span> / <span
+                                        id="yy_mock">00</span> -->
+                                </strong>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="60" height="40"
+                                    viewBox="-9.488415 -3.493 82.23293 20.958">
+                                    <path
+                                        d="M21.9026.7002C20.931-.981 15.2714.4687 9.2632 3.9413 3.2536 7.4126-.8296 11.5895.1433 13.272c.8351 1.4456 5.1332.5747 10.1396-1.9003.2233-.1226.2081-.3872-.084-.2921-3.0855 1.1369-5.6597 1.2071-6.3253 0-.886-1.6013 1.9183-4.8452 6.2618-7.243C14.479 1.4361 18.718.7884 19.604 2.3896c.4038.7332.0345 1.8108-.9012 2.9946l-.0124.0179c-.3473.4285-.0951.558.153.35 2.395-2.1222 3.6435-4.0404 3.0592-5.052"
+                                        fill="#de1e23" />
+                                    <path
+                                        d="M12.8916 11.7741c-.5347-.1447-.973-.3404-1.3078-.587l.6063-1.3698c.3583.226.7387.3996 1.1397.5195.4024.12.8047.1805 1.2099.1805.412 0 .729-.0579.9495-.1694.2177-.1144.328-.2743.328-.4796 0-.186-.0993-.3376-.2977-.4603-.1998-.1185-.5747-.237-1.1245-.3528-.6932-.1391-1.232-.3086-1.6164-.5112-.3859-.2026-.6532-.441-.8103-.7152-.1544-.2756-.2302-.6077-.2302-1.0005 0-.4464.1268-.8488.3818-1.2099.2549-.361.6104-.6421 1.0707-.8447.4603-.2026.984-.3032 1.5765-.3032.5291 0 1.0418.073 1.5392.2205.4989.1475.8875.3418 1.17.583l-.598 1.3697a3.9875 3.9875 0 00-1.0198-.521c-.357-.1198-.7138-.1804-1.0708-.1804-.35 0-.6325.0675-.8447.2012-.2136.1336-.3197.3155-.3197.5415 0 .124.0372.226.113.3087.0758.0813.2177.164.4217.2425.2067.0785.5154.1626.9274.2522.667.1447 1.1906.3183 1.5723.5195.3804.2026.6505.441.8076.7111.1584.2715.2384.5953.2384.9743 0 .7138-.2798 1.2774-.8351 1.684-.5567.4092-1.3395.6132-2.3496.6132a6.2696 6.2696 0 01-1.6274-.2164m11.3026-5.1097v5.2324h-1.8355v-.7097c-.1488.2466-.3693.441-.6573.5815-.2894.1406-.6064.2122-.9481.2122-.4479 0-.8448-.1102-1.1962-.3307-.3486-.2205-.6228-.5333-.82-.9426-.1942-.4065-.2934-.8806-.2934-1.4152 0-.543.1006-1.024.3004-1.4428.1984-.4203.4727-.7456.8227-.9798.3514-.233.7455-.35 1.1865-.35.3417 0 .6573.073.9412.2218.2866.1475.507.346.6642.5926v-.6697zM22.0913 10.25c.1792-.2274.2674-.5526.2674-.9784 0-.434-.0882-.7648-.2674-.995-.1777-.23-.4327-.3458-.762-.3458-.3225 0-.576.1199-.762.3555-.1861.237-.2784.5719-.2784 1.006 0 .4161.0882.7386.2673.9632.1792.2219.4368.3335.773.3335.3294 0 .5844-.113.7621-.339m3.3225-3.5856v-.1447c0-.7084.186-1.2596.5512-1.6578.368-.3983.9026-.5995 1.6027-.5995.3996 0 .7234.0496.9687.1447v1.4332c-.1998-.0482-.3652-.073-.4933-.073-.2205 0-.4024.0634-.5471.1915-.1433.1268-.2163.3197-.2163.5816v.124h1.0197v1.3698h-1.0197v3.8626h-1.866V6.6644m9.2013 0v5.2324h-1.8342v-.7097c-.1502.2466-.3693.441-.6601.5815-.2866.1406-.6036.2122-.9467.2122-.4465 0-.8434-.1102-1.1948-.3307-.35-.2205-.6228-.5333-.8199-.9426-.1957-.4065-.2921-.8806-.2921-1.4152 0-.543.0992-1.024.2976-1.4428.1984-.4203.474-.7456.824-.9798.3515-.233.7456-.35 1.1852-.35.3431 0 .6587.073.9426.2218.2852.1475.507.346.6642.5926v-.6697zM32.5134 10.25c.1792-.2274.2674-.5526.2674-.9784 0-.434-.0882-.7648-.2674-.995-.1777-.23-.4313-.3458-.762-.3458-.3225 0-.5774.1199-.762.3555-.1861.237-.2784.5719-.2784 1.006 0 .4161.0896.7386.2687.9632.1778.2219.4354.3335.7717.3335.3307 0 .5843-.113.762-.339m7.0928-3.5967v1.7005c-.2949-.1378-.5774-.2067-.8516-.2067-.78 0-1.17.3748-1.17 1.1231v2.6266H35.727v-3.729c0-.5622-.0275-1.0639-.0813-1.5048h1.7446l.113.8764c.1227-.3225.3197-.5705.5953-.7428.2729-.1695.5802-.2563.922-.2563.2535 0 .4478.0386.5856.113m.5512 5.2435h1.8645V6.663h-1.8645zm3.4933-.6381c-.5002-.481-.751-1.1355-.751-1.9664 0-.5499.1199-1.035.3638-1.4525.2453-.419.5857-.7441 1.0267-.9743.4382-.23.948-.3445 1.524-.3445.3832 0 .7621.0551 1.1342.1682.3693.1143.6642.2673.8847.4602l-.474 1.2857c-.1847-.1502-.4024-.27-.6477-.3596-.248-.0896-.4851-.1337-.7125-.1337-.3844 0-.6793.1102-.886.3293-.2054.2192-.3087.5471-.3087.9785 0 .441.1033.7717.3086.9963.2068.2218.5058.3335.8972.3335.2273 0 .4616-.0441.7055-.135.244-.0883.4589-.2096.6436-.3598l.474 1.2665c-.226.1998-.5278.3541-.8999.4644-.3762.1102-.7758.164-1.2016.164-.8861 0-1.5792-.2398-2.0809-.7208m5.9036.3913c-.4327-.219-.7662-.536-1.0005-.948-.2343-.412-.35-.8957-.35-1.4524 0-.5568.1157-1.0405.35-1.4525.2343-.412.5678-.7276 1.0005-.9467.4327-.2205.9412-.3307 1.5255-.3307.576 0 1.079.1116 1.5075.3362.43.2219.7607.5388.9936.9467.2343.408.35.8902.35 1.447 0 .5567-.1157 1.0404-.35 1.4483-.2329.4079-.5636.7248-.9936.9467-.4285.2232-.9315.3362-1.5075.3362-.5843 0-1.0928-.1102-1.5255-.3307m2.5356-2.4005c0-.4534-.0854-.787-.255-1.0033-.1667-.2163-.4203-.3238-.7551-.3238-.3446 0-.6022.1075-.7745.3238-.1709.2164-.2577.5499-.2577 1.0033 0 .4602.0868.7992.2577 1.0156.1723.2163.43.3252.7745.3252.6724 0 1.01-.4479 1.01-1.3408m10.7295-2.1732c.2921.3707.4368.937.4368 1.6991v3.1213H61.393v-3.069c0-.31-.047-.5332-.1406-.6697-.0923-.1378-.2494-.2067-.4685-.2067-.2618 0-.463.0978-.6077.2894-.1447.193-.2164.4617-.2164.813v2.843h-1.8645v-3.069c0-.31-.0496-.5332-.1446-.6697-.0965-.1378-.2508-.2067-.463-.2067-.2605 0-.463.0978-.6023.2894-.142.193-.2122.4617-.2122.813v2.843H54.806v-3.729c0-.5622-.0248-1.0652-.08-1.5034h1.7516l.0923.7317c.1584-.2825.3803-.4989.6642-.6504.2852-.1489.6132-.2247.9839-.2247.7496 0 1.2581.3156 1.5241.9467.1874-.2893.434-.5181.7373-.6903.3059-.1723.638-.2564.9949-.2564.6036 0 1.0514.1847 1.345.5554M40.1574 5.7769h1.8645V4.0984h-1.8645zm0 0"
+                                        fill="#3aa335" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ul class="purchase-props">
+                        {% if subscription %}
+                        <li class="flex-between">
+                            <span>Company</span>
+                            <strong>Victor Fitness</strong>
+                        </li>
+                        <li class="flex-between">
+                            <span>Order number</span>
+                            <strong>{{subscription.invoice_no}}</strong>
+                        </li>
+                        <li class="flex-between">
+                            <span>Product</span>
+                            <strong>{{subscription.subscription}} Subscription</strong>
+                        </li>
+                        <li class="flex-between">
+                            <span>Amount</span>
+                            <strong>KES {{subscription.invoiced_amount|floatformat:2}}</strong>
+                        </li>
+                        {%endif%}
+                    </ul>
+                </div>
+                <div class="separation-line"></div>
+                <div class="total-section flex-between flex-vertical-center">
+                    <div class="flex-fill flex-vertical">
+                        <div class="total-label f-secondary-color">You have to Pay</div>
+                        <div>
+                            <strong>{{subscription.invoiced_amount|floatformat:0}}</strong>
+                            <small>.00 <span class="f-secondary-color">KES</span></small>
+                        </div>
+                    </div>
+                    <i class="ai-coin size-lg"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <script>
+
+    function initiateSTKPush(amount, phoneNumber, callBackURL, accountReference, transactionDesc) {
+        
+        var postUrl = "";
+
+        callBackURL = 'https://www.shapentone360.com/api/transactions/'
+        transactionDesc = 'Gym Subsscription'
+
+        $.ajax({
+            url: postUrl,
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                'amount': amount,
+                'phone_number': phoneNumber,
+                'call_back_url': callBackURL,
+                'account_reference': accountReference,
+                'transaction_desc': transactionDesc
+            }),
+            success: function (data) {
+                pollTransactionStatus(data.transaction_id);
+            },
+            error: function (error) {
+                console.error('Error initiating STK push:', error);
+            }
+        });
+    }
+
+    function pollTransactionStatus(transactionId) {
+        var pollInterval = 5000; // Poll every 5 seconds
+        (function poll() {
+            setTimeout(function () {
+                $.ajax({
+                    url: '/check_transaction_status/',
+                    type: 'GET',
+                    data: { 'transaction_id': transactionId },
+                    success: function (data) {
+                        if (data.status === 'Completed') {
+                            console.log('Transaction completed:', data);
+                            // Stop polling and handle the completed transaction
+                        } else {
+                            // Continue polling
+                            poll();
+                        }
+                    },
+                    error: function (error) {
+                        console.error('Error checking transaction status:', error);
+                    }
+                });
+            }, pollInterval);
+        })();
+    }
+
+
+    /* COPY INPUT VALUES TO CARD MOCKUP */
+    const bounds = document.querySelectorAll('[data-bound]');
+
+    for (let i = 0; i < bounds.length; i++) {
+        const targetId = bounds[i].getAttribute('data-bound');
+        const defValue = bounds[i].getAttribute('data-def');
+        const targetEl = document.getElementById(targetId);
+        bounds[i].addEventListener('keyup', () => targetEl.innerText = bounds[i].value || defValue);
+    }
+
+
+    /* TOGGLE CVC DISPLAY MODE */
+    const cvc_toggler = document.getElementById('cvc_toggler');
+
+    cvc_toggler.addEventListener('click', () => {
+        const target = cvc_toggler.getAttribute('data-target');
+        const el = document.getElementById(target);
+        el.setAttribute('type', el.type === 'text' ? 'password' : 'text');
+    });
+
+
+    /* TIMER COUNTDOWN */
+    const timer = document.querySelector('[data-id=timer]');
+    let timeLeft = 5 * 60 + 1;
+
+    const tick = () => {
+        if (timeLeft > 0) {
+            timeLeft--;
+            const date = new Date('2000-01-01 00:00:00');
+            date.setSeconds(timeLeft);
+            const str = date.toISOString();
+            timer.children[0].innerText = str[14];
+            timer.children[1].innerText = str[15];
+            timer.children[3].innerText = str[17];
+            timer.children[4].innerText = str[18];
+        }
+    }
+
+    setInterval(() => { tick(); }, 1000);
+    tick();
+
+    $(document).ready(function () {
+        $("#phone-number").intlTelInput({
+            initialCountry: "ke", // Set Kenya as the initial country
+            separateDialCode: true, // Show the dial code separately
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.9/js/utils.js"
+        });
+    });
+</script> -->
+{% endblock %}

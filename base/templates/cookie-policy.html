@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+    {% include 'header.html' %}
+{% for i in policy %}
+    <div class="image-aboutus-banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class="lg-text">{{ i.title }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+
+
+            {{ i.content|safe }}
+
+    </div>
+    {% endfor %}
+    {% include 'footer.html' %}
+{% endblock %}

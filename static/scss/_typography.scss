@@ -1,0 +1,33 @@
+.title-1{
+    font-weight: 900;
+    span{
+        color: $base-color;
+    }
+}
+
+.header-1{
+    font-size: 30px;
+    font-weight: 600;
+    
+}
+
+.header-4{
+    font-size: 18px;
+    font-weight: 600;
+    
+    span{
+        padding: 4px;
+        background-color: $base-color;
+        color: white;
+        font-size: 11px;
+        border-radius: 2px;
+        text-transform: uppercase;
+    }
+}
+
+.header-5{
+    font-size: 13px;
+    font-weight: 600;
+    
+}
+

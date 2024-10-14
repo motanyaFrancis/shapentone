@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{%block title %}
+
+{% endblock%}
+
+{% block body %}
+<style>
+    .card {
+        border: none;
+        background-color: #f8faec;
+        border-radius: 8px;
+        box-shadow: 5px 6px 6px 2px #e9ecef
+    }
+
+    .heading {
+        font-size: 23px;
+        font-weight: 00
+    }
+
+    .text {
+        font-size: 16px;
+        font-weight: 500;
+        color: #b1b6bd
+    }
+
+    .pricing {
+        border: 2px solid #afca0b;
+        background-color: #f2f7d1
+    }
+
+    .business {
+        font-size: 20px;
+        font-weight: 500
+    }
+
+    .plan {
+        color: #aba4a4
+    }
+
+    .dollar {
+        font-size: 16px;
+        color: #6b6b6f
+    }
+
+    .amount {
+        font-size: 50px;
+        font-weight: 500
+    }
+
+    .year {
+        font-size: 20px;
+        color: #6b6b6f;
+        margin-top: 19px
+    }
+
+    .detail {
+        font-size: 22px;
+        font-weight: 500
+    }
+</style>
+<div class="container mt-5 p-auto mb-5 d-flex justify-content-center">
+    <div class="card m-auto">
+        <div class="card-body">
+
+            <div>
+                <h4 class="heading">Upgrade your plan</h4>
+                <p class="text">Please make the payment to start enjoying all the features of our premium plan as soon
+                    as
+                    possible</p>
+            </div>
+            <div class="pricing p-3 rounded mt-4 d-flex justify-content-between">
+                <div class="images d-flex flex-row align-items-center gap-2">
+                    <img src="https://i.imgur.com/S17BrTx.png" class="rounded" width="60">
+                    <div class="d-flex flex-column ml-4">
+                        <span class="business">{{package.name}}</span>
+                        <span class="plan">WORKOUT PLAN</span>
+                    </div>
+                </div> <!--pricing table-->
+                <div class="d-flex flex-row align-items-center">
+                    <sup class="dollar font-weight-bold pl-1">KES </sup>
+                    <span class="amount ml-1 mr-1"> {{package.amount}}</span>
+                    <span class="year font-weight-bold">/ month</span>
+                </div>
+                <!-- /pricing table-->
+            </div> <span class="detail mt-5">Payment M-pesa</span>
+            <div class="credit rounded mt-4 d-flex justify-content-between align-items-center">
+                <div class="d-flex flex-row align-items-center gap-3">
+                    <span class="border border-secondary p-3 px-0 rounded-5">
+                        <svg width="100" height="5mm" viewBox="0 0 1454.423 377.953" xml:space="preserve"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <clipPath clipPathUnits="userSpaceOnUse" id="a">
+                                    <path d="M0 1080h1920V0H0Z" />
+                                </clipPath>
+                            </defs>
+                            <g clip-path="url(#a)" transform="matrix(1.30794 0 0 -1.30794 -972.598 895.457)">
+                                <path
+                                    d="M0 0c25.738-6.475 47.337 26.8 47.337 26.8 21.275-33.237 38.5-6.475 38.5-6.475S69.95-6.475 19.375-5.412z"
+                                    style="fill:#9f4a3e;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                    transform="translate(1034.372 544.11)" />
+                                <path d="M0 0s-36.712-75.638-99.8-55.613c0 0 115.162-35.5 157.375 27.837z"
+                                    style="fill:#da3939;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                    transform="translate(1133.806 599.265)" />
+                                <path
+                                    d="M0 0v-103.888h-117.788v125.8a60.75 60.75 0 0 0-7.538 2.3v-140.8c0-10.65 7.412-19.3 16.563-19.3h99.75c9.137 0 16.55 8.65 16.55 19.3V5.187C5.063 3.35 2.163 1.412 0 0"
+                                    style="fill:#e5eadb;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                    transform="translate(1169.904 546)" />
+                                <path
+                                    d="M0 0h117.8v-62.75l7.525-4.35V1.725c0 10.662-7.412 19.3-16.55 19.3H9.025c-9.137 0-16.55-8.637-16.55-19.3v-88.138c3.362.475 5.913 1.262 7.525 1.9z"
+                                    style="fill:#e5eadb;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                    transform="translate(1052.107 649.158)" />
+                                <path
+                                    d="M0 0v-75.487h-46.262V-7.55c0 18.988-7.8 27.025-19.975 27.025-13.388 0-23.125-9.012-23.125-29.462v-65.5h-46.263V-7.55c0 18.988-7.55 27.025-19.975 27.025-13.637 0-23.375-9.012-23.375-29.462v-65.5h-46.275V56.488h44.075V42.6c9.988 10.713 23.863 16.075 39.45 16.075 18.012 0 33.35-6.575 42.613-20.7 10.462 13.15 26.775 20.7 45.775 20.7C-22.65 58.675 0 40.912 0 0"
+                                    style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                    transform="translate(1024.46 558.283)" />
+                                <path
+                                    d="M0 0c0 19.963-12.175 31.412-27.763 31.412-15.575 0-27.763-11.45-27.763-31.412 0-19.975 12.175-31.412 27.763-31.412C-12.175-31.412 0-19.975 0 0m46.75 0c0-41.887-28.975-68.188-64.775-68.188-15.337 0-27.75 4.625-36.763 13.875v-58.925h-46.262V65.975h44.075V52.838C-48.2 63.3-35.3 68.175-18.025 68.175c35.8 0 64.775-26.288 64.775-68.175"
+                                    style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                    transform="translate(1302.8 548.788)" />
+                                <path
+                                    d="M0 0h54.063C51.625 13.887 41.4 22.637 27.025 22.637 12.663 22.637 2.688 13.887 0 0m96.662-24.35H.737c3.887-13.388 15.337-21.188 32.375-21.188 12.9 0 21.425 3.65 30.438 11.45L87.9-59.413C75.237-73.538 56.737-80.851 31.662-80.851c-47 0-77.438 28.975-77.438 68.425 0 39.688 30.925 67.938 72.563 67.938C65.75 55.512 97.4 30.675 97.4-12.9c0-3.413-.488-7.8-.737-11.45"
+                                    style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                    transform="translate(1408.465 561.45)" />
+                                <path
+                                    d="m0 0 13.875 31.65C26.05 24.112 43.825 19.475 59.9 19.475c15.588 0 20.688 3.413 20.688 9.012 0 17.775-77.912-2.438-77.912 50.412 0 24.838 22.887 43.825 64.287 43.825 18.5 0 38.95-3.887 52.1-11.2l-13.875-31.4a77.387 77.387 0 0 1-37.987 9.738c-15.575 0-21.188-4.375-21.188-9.25 0-18.262 77.675 1.462 77.675-50.888 0-24.35-22.4-43.35-65.25-43.35C36.037-13.637 12.912-8.037 0 0"
+                                    style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                    transform="translate(1516.82 494.243)" />
+                                <path
+                                    d="M0 0c0 19.975-12.175 31.163-27.75 31.163-15.588 0-27.763-11.2-27.763-31.163 0-20.213 12.175-31.65 27.763-31.65C-12.175-31.65 0-20.213 0 0m45.538 65.738V-66.225H1.462v13.15C-7.3-63.55-20.213-68.425-37.5-68.425c-35.8 0-64.763 26.3-64.763 68.425 0 41.875 28.975 67.938 64.763 67.938 15.337 0 27.763-4.387 36.775-13.637v11.438z"
+                                    style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                    transform="translate(1754.466 549.032)" />
+                            </g>
+                        </svg>
+                    </span>
+                    <div class="d-flex flex-column ml-3">
+                        <span class="business">Phone Number</span>
+                        <span class="plan">+254 XXX XXXX89</span>
+                    </div>
+                </div>
+                <!-- <div> <input type="text" class="form-control cvv" placeholder="CVC"> </div> -->
+            </div>
+
+
+            <div class="mt-3">
+                <form action="{% url 'package_selection' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="package" value="{{package.id}}" >
+                    <button type="submit" class="btn btn-primary P-2">Proceed to payment <i
+                            class="fa fa-long-arrow-right"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer  fixed-bottom mt-auto pb-3 bg-light">
+    <hr class="mx-0 px-0">
+    <div class="container">
+        <div class="row mb-2" style="font-size:12px;">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="pull-left">
+                    <p>&copy; 2020 Shape n' Tone 360</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="float-end mr-4 d-flex policy gap-3">
+                    <div><a href="/terms-of-use/">Terms of Use</a></div>
+                    <div><a href="/privacy-policy/">Privacy Policy</a></div>
+                    <div><a href="/cookies-policy/">Cookie Policy</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+{%endblock%}

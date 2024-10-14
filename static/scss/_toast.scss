@@ -1,0 +1,43 @@
+.alert {
+    position: fixed;
+    top: 5px;
+    right: 10px;
+    width: 400px;
+    font-size: 12px;
+    &::before{
+        background-color: --;
+    }
+}
+
+.toast {
+    width: 450px !important;
+    margin: auto;
+    margin-top: 2rem;
+    background-color: white;
+    position: fixed;
+    z-index: 999;
+}
+
+.toast-content {
+    padding: 15px;
+}
+
+.icon i {
+    font-size: 35px;
+}
+
+
+.toast.success {
+    border: 2px solid #14A44D !important;
+    color: #14A44D;
+}
+
+.toast.warning {
+    border: 2px solid #F9A02C !important;
+    color: #F9A02C;
+}
+
+.toast.error {
+    border: 2px solid #D90429 !important;
+    color: #D90429;
+}

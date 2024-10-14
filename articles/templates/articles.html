@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+{% endblock %}
+{% block body %}
+{% include 'header.html' %}
+<div class="image-aboutus-banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="lg-text">Our Articles</h1>
+                <p class="image-aboutus-para">"Unlocking the Secrets of Mindfulness: How it Impacts Your
+                    Physical and Mental Well-being"</p>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="bg-black py-5 text-white">
+    {% for latest_article in latest_article %}
+    <div class="container-horizontal-cta">
+        <div class="w-dyn-list">
+            <div role="list" class="w-dyn-items">
+                <div role="listitem" class="w-dyn-item"><a href="{% url 'article_detail' latest_article.slug %}"
+                        class="featured-article w-inline-block">
+                        <div class="button category-tag image-overlay featured-image">
+                            <div class="text-block-76">Blog</div>
+                        </div>
+                        <div class="featured-copy">
+                            <div class="button category-tag main-topic">
+                                <div>{{latest_article.category}}</div>
+                            </div>
+                            <h3 class="featured-heading">{{latest_article.title}}</h3>
+                            <div class="blog-text">{{latest_article.content|safe|truncatechars:300}} </div>
+                            <div class="min-read">{{latest_article.date_created|date}}</div>
+                        </div><img alt="" src="{{latest_article.image.url}}"
+                            sizes="(max-width: 767px) 94vw, (max-width: 991px) 51vw, 56vw"
+                            srcset="{{latest_article.image.url}} 1044w" class="featured-image-wrapper">
+                    </a></div>
+            </div>
+        </div>
+    </div>
+    {%endfor%}
+
+
+
+    <div class="container latest_articles">
+        <div class="section-title-wrapper py-4">
+            <h3>Latest Articles</h3>
+        </div>
+        <div class="row">
+            {% for article in articles %}
+            <div class="col-12 col-md-6 col-xl-4 mb-4">
+                <a href="{% url 'article_detail' article.slug %}">
+                    <div class="card post-card mr-3 ">
+                        <div class="wrapper-article-image">
+                            <div class="button category-tag image-overlay">
+                                <div class="post-category">Blog</div>
+                            </div>
+                            <img alt="" src="{{article.image.url}}"
+                                sizes="(max-width: 479px) 100vw, (max-width: 767px) 45vw, 30vw"
+                                srcset="{{article.image.url}} 1044w" class="article-image">
+                        </div>
+                        <div class="card-body">
+                            <div class="button category-tag main-topic">
+                                <div>{{article.category}}</div>
+                            </div>
+                            <h4 class="article-heading">{{article.title}} </h4>
+
+                            <div class="min-read">{{article.date_created|date}}</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {%endfor%}
+
+        </div>
+    </div>
+</section>
+
+{% include 'newsletter.html' %}
+<!-- Discount -->
+<div class="section" id="discount">
+    <div class="container d-flex gap-5 justify-content-center align-items-center">
+        <div class="visual">
+            <img src="{% static 'img/fitness-6.jpg' %}" alt="" />
+        </div>
+        <div class="text">
+            <h2 class="primary mb-5">
+                Sign Up to unlock your full potential
+            </h2>
+
+            <p class="tertiary mb-5">
+                We focus on your needs to create an all-round workout plan that naturally fits into your life. So you
+                can get
+                the body and health you want, at a pace that works for you.
+            </p>
+
+            <a href="/#pricing-tables" class="btn btn-primary px-5 py-3 rounded-5 mt-4">Book Now</a>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- End Discount -->
+{% include 'footer.html' %}
+
+{% endblock %}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup Done</title>
+</head>
+<body>
+    <h2>Signup Complete</h2>
+    <p>Thank you for signing up! Please check your email to confirm your account.</p>
+</body>
+</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Verify Account{% endblock %}
+{% block body %}
+<div class="flex justify-content-center vh-100">
+    <div class="bg-green"></div>
+    <div class="p-5 text-center form_overlay">
+        <i class="fa-regular fa-circle-check display-1 mb-4"></i>
+        <h2>Signup Complete</h2>
+        <p>Thank you for signing up! Please check your email to confirm your account.</p>
+        <div class="mt-4">
+            <a href="/" class="mt-5"><u>Back Home > </u></a>
+        </div>
+    </div>
+</div>
+{% endblock %}

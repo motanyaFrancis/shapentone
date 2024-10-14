@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Verify Account{% endblock %}
+{% block body %}
+<div class="flex justify-content-center vh-100">
+    <div class="bg-green"></div>
+    <div class="p-5 text-center form_overlay text-danger">
+        <i class="fa-regular fa-circle-xmark display-1 mb-4"></i>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <p>Sorry something went wrong!!!!</p>
+        <div class="mt-4">
+            <a href="/" class="mt-5"><u>Back Home > </u></a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!-- <div class="container">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+</div> -->

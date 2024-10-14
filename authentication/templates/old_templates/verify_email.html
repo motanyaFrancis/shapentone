@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Verify Account{% endblock %}
+{% block body %}
+<div class="flex justify-content-center vh-100">
+    <div class="bg-green"></div>
+    <div class="p-5 text-center form_overlay">
+        <h4>Verify your email</h4>
+        <p>Thank you fro registering with victor fitness. kindly click on the button below to verify your acount</p>
+        <form method="post">
+            {% csrf_token %}
+            <input class="btn btn-primary mt-3" type="submit" value="Verify">
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,1279 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/material-ui/4.12.4/index.js"
+    integrity="sha512-wEnX3bNd/CdyrOFR0KIGlHihK/w9x3/It8Vc18aymEF/F/f1q0Mq8T+GSxF1wYUACLEGECapuIYQdQlKY1LBJw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+
+<!-- <h1 class="text-center my-4">Intake Form</h1> -->
+
+<div style="width: 100%; padding: 0em 2em;">
+    <form action="" method="post" class="form border border-2 rounded-3 my-4 p-3" style="width: fit-content; margin: auto;">
+        {% csrf_token %}
+        <div class="formstep">
+            <h4 class="text-center mb-3">Basic Information</h4>
+            <div class="d-flex gap-3 mb-3">
+                <div>
+                    <label for="firstname" class="form-label">First Name</label>
+                    <input type="text" name="firstname" class="form-control">
+                </div>
+                <div>
+                    <label for="lastname" class="form-label">Last Name</label>
+                    <input type="text" name="lastname" class="form-control">
+                </div>
+            </div>
+            <div class="mb-3 d-flex">
+                <p class="mb-3 me-4">Gender</p>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="gender" value="male">
+                    <label for="gender" class="form-check-label">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="gender" value="female">
+                    <label for="gender" class="form-check-label">Female</label>
+                </div>
+            </div>
+            <label for="dateofbirth" class="form-label">Date of Birth</label>
+            <input type="date" class="form-control mb-3" name="dateofbirth">
+            <div class="d-flex gap-3 mb-3">
+                <div>
+                    <label for="Age" class="form-label">Age</label>
+                    <input type="text" name="Age" class="form-control">
+                </div>
+                <div>
+                    <label for="height" class="form-label">Height</label>
+                    <input type="text" name="height" class="form-control">
+                </div>
+                <div>
+                    <label for="weight" class="form-label">Weight</label>
+                    <input type="text" name="weight" class="form-control">
+                </div>
+            </div>
+            <div class="d-flex gap-3 mb-3">
+                <div>
+                    <label for="phonenumber" class="form-label">Phone Number</label>
+                    <input type="text" name="phonenumber" class="form-control">
+                </div>
+                <div>
+                    <label for="areacode" class="form-label">Area code</label>
+                    <input type="text" name="areacode" class="form-control">
+                </div>
+            </div>
+            <label for="email" class="form-label">Email</label>
+            <input type="email" name="email" class="form-control mb-3">
+    
+            <div class="mb-3">
+                <p class="mb-3 me-4">How would you like to be contacted</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="contactmethod" value="phone">
+                    <label for="contactmethod" class="form-check-label">Phone</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="contactmethod" value="email">
+                    <label for="contactmethod" class="form-check-label">Email</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="contactmethod" value="text">
+                    <label for="contactmethod" class="form-check-label">Text</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="contactmethod" value="other">
+                    <label for="contactmethod" class="form-check-label">Other</label>
+                </div>
+            </div>
+        </div>
+        <div class="formstep">
+            <h4 class="text-center mb-3">Lifestyle Information</h4>
+            <div class="mb-4">
+                <label for="livingdescription" class="form-label">What do you do for a living?</label>
+                <textarea name="livingdescription" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="workinghours" class="form-label">How many hours on average do you work each week?</label>
+                <textarea name="workinghours" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">How do you spend the majority of your time at work?</p>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="workactivity" value="standing">
+                    <label for="workactivity" class="form-check-label">Standing</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="workactivity" value="sitting">
+                    <label for="workactivity" class="form-check-label">Sitting</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="workactivity" value="driving">
+                    <label for="workactivity" class="form-check-label">Driving</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="workactivity" value="active">
+                    <label for="workactivity" class="form-check-label">Active</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="workschedule" class="form-label">Do you follow a regular working schedule, do you work days, afternoon or nights?</label>
+                <textarea name="workschedule" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">When you wake up are you</p>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="morningfatigue" value="standing">
+                    <label for="morningfatigue" class="form-check-label">Tired and find it difficult to pull yourself out of bed</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="morningfatigue" value="sitting">
+                    <label for="morningfatigue" class="form-check-label">Active, refreshed and ready to face the day</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">How often do you travel?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="travelinfo" value="rarely">
+                    <label for="travelinfo" class="form-check-label">Rarely</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="travelinfo" value="yearly">
+                    <label for="travelinfo" class="form-check-label">A few times a year</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="travelinfo" value="monthly">
+                    <label for="travelinfo" class="form-check-label">A few times a month</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="travelinfo" value="weekly">
+                    <label for="travelinfo" class="form-check-label">Weekly</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">How would you consider your current body weight</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="bodyweight" value="underweight">
+                    <label for="bodyweight" class="form-check-label">Underweight</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="bodyweight" value="ideal">
+                    <label for="bodyweight" class="form-check-label">Ideal</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="bodyweight" value="overweight">
+                    <label for="bodyweight" class="form-check-label">A bit overweight</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="bodyweight" value="veryoverweight">
+                    <label for="bodyweight" class="form-check-label">Very overweight</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">How would you describe your current activity level</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="activitylevel" value="sedentary">
+                    <label for="activitylevel" class="form-check-label">Sedentary</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="activitylevel" value="moderatelyactive">
+                    <label for="activitylevel" class="form-check-label">Moderately Active</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="activitylevel" value="active">
+                    <label for="activitylevel" class="form-check-label">Active</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="activitylevel" value="hightlyactive">
+                    <label for="activitylevel" class="form-check-label">Hightly Active</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">How would you rate the stress of your job</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="jobstresslevel" value="1">
+                    <label for="jobstresslevel" class="form-check-label">1 (no or little stress)</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="jobstresslevel" value="2">
+                    <label for="jobstresslevel" class="form-check-label">2</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="jobstresslevel" value="3">
+                    <label for="jobstresslevel" class="form-check-label">3</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="jobstresslevel" value="4">
+                    <label for="jobstresslevel" class="form-check-label">4</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="jobstresslevel" value="5">
+                    <label for="jobstresslevel" class="form-check-label">5</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="jobstresslevel" value="6">
+                    <label for="jobstresslevel" class="form-check-label">6</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="jobstresslevel" value="7">
+                    <label for="jobstresslevel" class="form-check-label">7</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="jobstresslevel" value="8">
+                    <label for="jobstresslevel" class="form-check-label">8</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="jobstresslevel" value="9">
+                    <label for="jobstresslevel" class="form-check-label">9</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="jobstresslevel" value="10">
+                    <label for="jobstresslevel" class="form-check-label">10 (Overwhelming stress/verge of nervous breakdown)</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">How would you rate the stress of your lifestyle?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="lifestylestresslevel" value="1">
+                    <label for="lifestylestresslevel" class="form-check-label">1 (no or little stress)</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="lifestylestresslevel" value="2">
+                    <label for="lifestylestresslevel" class="form-check-label">2</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="lifestylestresslevel" value="3">
+                    <label for="lifestylestresslevel" class="form-check-label">3</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="lifestylestresslevel" value="4">
+                    <label for="lifestylestresslevel" class="form-check-label">4</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="lifestylestresslevel" value="5">
+                    <label for="lifestylestresslevel" class="form-check-label">5</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="lifestylestresslevel" value="6">
+                    <label for="lifestylestresslevel" class="form-check-label">6</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="lifestylestresslevel" value="7">
+                    <label for="lifestylestresslevel" class="form-check-label">7</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="lifestylestresslevel" value="8">
+                    <label for="lifestylestresslevel" class="form-check-label">8</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="lifestylestresslevel" value="9">
+                    <label for="lifestylestresslevel" class="form-check-label">9</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="lifestylestresslevel" value="10">
+                    <label for="lifestylestresslevel" class="form-check-label">10 (Overwhelming stress/verge of nervous breakdown)</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="activitiesoutsidegym" class="form-label">Please list the physical activities that you participate in outside of the gym and outside of work.</label>
+                <textarea name="activitiesoutsidegym" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="lifestylereviewreason" class="form-label">Why have you decided to have a lifestyle review?</label>
+                <textarea name="lifestylereviewreason" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="focusarea" class="form-label">What is the main area that you would like to focus on?</label>
+                <textarea name="focusarea" class="form-control"></textarea>
+            </div>
+        </div>
+        <div class="formstep">
+            <h4 class="text-center mb-3">Physical Activity Readiness Questionaire (PAR-Q)</h4>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Has your doctor ever said you have a heart condition? </p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="heartconditioncheck" value="yes">
+                    <label for="heartconditioncheck" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="heartconditioncheck" value="no">
+                    <label for="heartconditioncheck" class="form-check-label">No</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Do you feel pain in your chest at rest, during your daily activities of living, or when you do physical activity?*</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="chestpain" value="yes">
+                    <label for="chestpain" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="chestpain" value="no">
+                    <label for="chestpain" class="form-check-label">No</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Do you lose balance because of dizziness or have you lost consciousness in the last 12 months?*</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="balanceloss" value="yes">
+                    <label for="balanceloss" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="balanceloss" value="no">
+                    <label for="balanceloss" class="form-check-label">No</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4"> Have you ever been diagnosed with another chronic medical condition (other than heart disease or high blood pressure)?*</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="otherchronicmedicalcondition" value="yes">
+                    <label for="otherchronicmedicalcondition" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="otherchronicmedicalcondition" value="no">
+                    <label for="otherchronicmedicalcondition" class="form-check-label">No</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="conditionslist" class="form-label">If yes to the above question, please list the condition(s) here.</label>
+                <textarea name="conditionslist" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Are you currently taking prescribed medications for a chronic medical condition?*</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="prescribedmedicines" value="yes">
+                    <label for="prescribedmedicines" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="prescribedmedicines" value="no">
+                    <label for="prescribedmedicines" class="form-check-label">No</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="prescriptionlist" class="form-label">If yes to the previous question, please list your medications and how long you have been taking them.</label>
+                <textarea name="prescriptionlist" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Do you currently have (or have had within the past 12 months) a bone, joint, or <br> soft tissue (muscle, ligament, or tendon) problem that could be made worse by becoming more physically active?*</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="previousinjury" value="yes">
+                    <label for="previousinjury" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="previousinjury" value="no">
+                    <label for="previousinjury" class="form-check-label">No</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="previousinjurydescription" class="form-label">If yes to the above question, please explain the condition.</label>
+                <textarea name="previousinjurydescription" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Has your doctor ever said you should only do medically supervised physical activity*</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="supervisedphysicalactivity" value="yes">
+                    <label for="supervisedphysicalactivity" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="supervisedphysicalactivity" value="no">
+                    <label for="supervisedphysicalactivity" class="form-check-label">No</label>
+                </div>
+            </div>
+        </div>
+        <div class="formstep">
+            <h4 class="text-center mb-3">Medical and Health Information</h4>
+            <div class="mb-4">
+                <label for="diagnosedhealthproblems" class="form-label">If you have any diagnosed health problems list the condition(s).</label>
+                <textarea name="diagnosedhealthproblems" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="currentmedication" class="form-label">If you are on any medications, please list them.</label>
+                <textarea name="currentmedication" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="additionaltherapies" class="form-label">What additional therapies are being undertaken for the given health problem(s)?</label>
+                <textarea name="additionaltherapies" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="injuryorsurgeryhistory" class="form-label">If you have any injuries or previously undergone surgery, please list them.</label>
+                <textarea name="injuryorsurgeryhistory" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="injurytherapy" class="form-label">What additional therapies are being undertaken for the given injury?</label>
+                <textarea name="injurytherapy" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Are you experiencing any stresses or motivational problems?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="stressormotivation" value="yes">
+                    <label for="stressormotivation" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="stressormotivation" value="no">
+                    <label for="stressormotivation" class="form-check-label">No</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Has anyone of your immediate family developed heart disease before the age of 60?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="familyheartdisease" value="yes">
+                    <label for="familyheartdisease" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="familyheartdisease" value="no">
+                    <label for="familyheartdisease" class="form-check-label">No</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Do any diseases run in your family?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="familygeneraldiseases" value="yes">
+                    <label for="familygeneraldiseases" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="familygeneraldiseases" value="no">
+                    <label for="familygeneraldiseases" class="form-check-label">No</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Do you suffer from diabetes, asthma, high or low blood pressure, arthritis?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="otherhealthdiseases" value="yes">
+                    <label for="otherhealthdiseases" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="otherhealthdiseases" value="no">
+                    <label for="otherhealthdiseases" class="form-check-label">No</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="otherhealthdiseaseslist" class="form-label">If yes please list:</label>
+                <textarea name="otherhealthdiseaseslist" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Do you have any pain or issues in your*</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="bodypain" value="head/neck">
+                    <label for="bodypain" class="form-check-label">Head/neck</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="bodypain" value="upperback">
+                    <label for="bodypain" class="form-check-label">Upper Back</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="bodypain" value="shoulders">
+                    <label for="bodypain" class="form-check-label">Shoulders</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="bodypain" value="arm/leg">
+                    <label for="bodypain" class="form-check-label">Arm/leg</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="bodypain" value="lowerback">
+                    <label for="bodypain" class="form-check-label">Lower Back</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="bodypain" value="hips/pelvis">
+                    <label for="bodypain" class="form-check-label">Hips/pelvis</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="bodypain" value="thigh/knees">
+                    <label for="bodypain" class="form-check-label">Thigh/knees</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="bodypain" value="other">
+                    <label for="bodypain" class="form-check-label">Other</label>
+                </div>
+            </div>
+        </div>
+        <div class="formstep">
+            <h4 class="text-center mb-3">Nutrition</h4>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Are you a current cigarette smoker?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="cigarettesmoker" value="yes">
+                    <label for="cigarettesmoker" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="cigarettesmoker" value="no">
+                    <label for="cigarettesmoker" class="form-check-label">No</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Do you drink alcohol?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="alcoholintake" value="yes">
+                    <label for="alcoholintake" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="alcoholintake" value="no">
+                    <label for="alcoholintake" class="form-check-label">No</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="waterintake" class="form-label">How much water do you drink each day?(glasses/litres)</label>
+                <textarea name="waterintake" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Are you on any specific food/diet plan at this time?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="currentdiet" value="yes">
+                    <label for="currentdiet" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="currentdiet" value="no">
+                    <label for="currentdiet" class="form-check-label">No</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">How many meals do you eat each day?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="dailymealcount" value="1-2">
+                    <label for="dailymealcount" class="form-check-label">1-2</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="dailymealcount" value="2-3">
+                    <label for="dailymealcount" class="form-check-label">2-3</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="dailymealcount" value="3-4">
+                    <label for="dailymealcount" class="form-check-label">3-4</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="dailymealcount" value="5+">
+                    <label for="dailymealcount" class="form-check-label">5+</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Do you add raw salt in your meals?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="rawsaltmeals" value="yes">
+                    <label for="rawsaltmeals" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="rawsaltmeals" value="no">
+                    <label for="rawsaltmeals" class="form-check-label">No</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Do you skipmeals?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="skipmeals" value="yes">
+                    <label for="skipmeals" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="skipmeals" value="no">
+                    <label for="skipmeals" class="form-check-label">No</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="skippedmeals" class="form-label">If yes which ones and how regularly.</label>
+                <textarea name="skippedmeals" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="mealtimes" class="form-label">What time of the day do you usually eat your meals?.</label>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>MEAL</th>
+                            <th>TIME</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Breakfast</td>
+                            <td><input type="text" name="breakfasttime" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td>Snack</td>
+                            <td><input type="text" name="Snackone" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td>Lunch</td>
+                            <td><input type="text" name="lunchtime" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td>Snack</td>
+                            <td><input type="text" name="snacktwo" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td>Evening</td>
+                            <td><input type="text" name="eveningmealtime" class="form-control"></td>
+                        </tr>
+                        <tr>
+                            <td>Dinner</td>
+                            <td><input type="text" name="dinnertime" class="form-control"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Which best describes your meal portions</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="mealportions" value="small">
+                    <label for="mealportions" class="form-check-label">Small</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="mealportions" value="medium">
+                    <label for="mealportions" class="form-check-label">Medium</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="mealportions" value="large">
+                    <label for="mealportions" class="form-check-label">Large</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="mealportions" value="extralarge">
+                    <label for="mealportions" class="form-check-label">Extra Large</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Do you ever get hungry between meals?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="hungerbetweenmeals" value="no">
+                    <label for="hungerbetweenmeals" class="form-check-label">No</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="hungerbetweenmeals" value="sometimes">
+                    <label for="hungerbetweenmeals" class="form-check-label">Sometimes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="hungerbetweenmeals" value="yes">
+                    <label for="hungerbetweenmeals" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="hungerbetweenmeals" value="extreme">
+                    <label for="hungerbetweenmeals" class="form-check-label">Extreme</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="snackchoices" class="form-label">If you snack or have any weaknesses, what do you generally tend to eat/drink?</label>
+                <textarea name="snackchoices" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Have you had any recent weight gain or loss?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="recentweightgain" value="yes">
+                    <label for="recentweightgain" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="recentweightgain" value="no">
+                    <label for="recentweightgain" class="form-check-label">No</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Are you taking any dietary supplement?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="dietarysupplements" value="yes">
+                    <label for="dietarysupplements" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="dietarysupplements" value="no">
+                    <label for="dietarysupplements" class="form-check-label">No</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Do you have any allergies?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="currentallergies" value="yes">
+                    <label for="currentallergies" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="currentallergies" value="no">
+                    <label for="currentallergies" class="form-check-label">No</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Please rate how you feel your current nutritional habits are</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="currentnutritionopinion" value="1">
+                    <label for="currentnutritionopinion" class="form-check-label">1 (I don't worry about what I eat, I just eat whatever, wherever.)</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="currentnutritionopinion" value="2">
+                    <label for="currentnutritionopinion" class="form-check-label">2</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="currentnutritionopinion" value="3">
+                    <label for="currentnutritionopinion" class="form-check-label">3</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="currentnutritionopinion" value="4">
+                    <label for="currentnutritionopinion" class="form-check-label">4</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="currentnutritionopinion" value="5">
+                    <label for="currentnutritionopinion" class="form-check-label">5</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="currentnutritionopinion" value="6">
+                    <label for="currentnutritionopinion" class="form-check-label">6</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="currentnutritionopinion" value="7">
+                    <label for="currentnutritionopinion" class="form-check-label">7</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="currentnutritionopinion" value="8">
+                    <label for="currentnutritionopinion" class="form-check-label">8</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="currentnutritionopinion" value="9">
+                    <label for="currentnutritionopinion" class="form-check-label">9</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="currentnutritionopinion" value="10">
+                    <label for="currentnutritionopinion" class="form-check-label">10 (I am very conscious of my food choices and eat whole foods fruits, and vegetables, and limit my processed food intake.)</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Is there any reason not mentioned why you should not follow a regular exercise program? <br> (Please remember it is your responsibility to consult with a physician before starting an exercise routine)*</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="otherexerciseprogramcomplications" value="yes">
+                    <label for="otherexerciseprogramcomplications" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="otherexerciseprogramcomplications" value="no">
+                    <label for="otherexerciseprogramcomplications" class="form-check-label">No</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="programcomplicationsexplain" class="form-label">If any explain</label>
+                <textarea name="programcomplicationsexplain" class="form-control"></textarea>
+            </div>
+        </div>
+        <div class="formstep">
+            <h4 class="text-center mb-3">Goals</h4>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Please rate your readiness for change</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="readinessforchange" value="1">
+                    <label for="readinessforchange" class="form-check-label">1</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="readinessforchange" value="2">
+                    <label for="readinessforchange" class="form-check-label">2</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="readinessforchange" value="3">
+                    <label for="readinessforchange" class="form-check-label">3</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="readinessforchange" value="4">
+                    <label for="readinessforchange" class="form-check-label">4</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="readinessforchange" value="5">
+                    <label for="readinessforchange" class="form-check-label">5</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="readinessforchange" value="6">
+                    <label for="readinessforchange" class="form-check-label">6</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="readinessforchange" value="7">
+                    <label for="readinessforchange" class="form-check-label">7</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="readinessforchange" value="8">
+                    <label for="readinessforchange" class="form-check-label">8</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="readinessforchange" value="9">
+                    <label for="readinessforchange" class="form-check-label">9</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="readinessforchange" value="10">
+                    <label for="readinessforchange" class="form-check-label">10</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Which of the following goals best fit in with your training goals (select all that apply)?*</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="goalalignment" value="improvedhealth">
+                    <label for="goalalignment" class="form-check-label">Improved Health</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="goalalignment" value="improvedendurance">
+                    <label for="goalalignment" class="form-check-label">Improved Endurance</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="goalalignment" value="increasedstrength">
+                    <label for="goalalignment" class="form-check-label">Increased Strength</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="goalalignment" value="increasedmusclemass">
+                    <label for="goalalignment" class="form-check-label">Increased Muscle Mass</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="goalalignment" value="fatloss">
+                    <label for="goalalignment" class="form-check-label">Fat Loss</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="goalalignment" value="improvedflexibility">
+                    <label for="goalalignment" class="form-check-label">Improved Flexibility</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="goalalignment" value="improvedposture">
+                    <label for="goalalignment" class="form-check-label">Improved Posture</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="goalalignment" value="other">
+                    <label for="goalalignment" class="form-check-label">Other</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="topthreegoals" class="form-label">What are the top three goals you want to accomplish, in order of importance?*</label>
+                <textarea name="topthreegoals" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="goalsreason" class="form-label">Explain why these three goals are most important to you.*</label>
+                <textarea name="goalsreason" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">What possible personal barriers do you feel are keeping you from reaching your nutritional and fitness goals?*</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="personalbarriers" value="lackofmotivation">
+                    <label for="personalbarriers" class="form-check-label">Lack of Motivation</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="personalbarriers" value="time">
+                    <label for="personalbarriers" class="form-check-label">Time</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="personalbarriers" value="selfconscious">
+                    <label for="personalbarriers" class="form-check-label">Self Conscious</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="personalbarriers" value="lackofequipment">
+                    <label for="personalbarriers" class="form-check-label">Lack of Equipment</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="personalbarriers" value="lackofprogress">
+                    <label for="personalbarriers" class="form-check-label">Lack of Progress</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="personalbarriers" value="hittingaplateau">
+                    <label for="personalbarriers" class="form-check-label">Hitting a Plateau</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="personalbarriers" value="how/wheretobegin">
+                    <label for="personalbarriers" class="form-check-label">Not knowing how/where to begin</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="personalbarriers" value="other">
+                    <label for="personalbarriers" class="form-check-label">Other</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Timeline for achieving your goal.</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="goaltimeline" value="8wks">
+                    <label for="goaltimeline" class="form-check-label">Lack of Motivation</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="goaltimeline" value="16wks">
+                    <label for="goaltimeline" class="form-check-label">Time</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="goaltimeline" value="24wks">
+                    <label for="" class="form-check-label">Self Conscious</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="goaltimeline" value="32wks">
+                    <label for="goaltimeline" class="form-check-label">Lack of Equipment</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="goaltimeline" value="40wks">
+                    <label for="goaltimeline" class="form-check-label">Lack of Progress</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="goaltimeline" value="1year">
+                    <label for="goaltimeline" class="form-check-label">Hitting a Plateau</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="weeklytraining" class="form-label">How often are you willing to train a week to reach your goal?</label>
+                <textarea name="weeklytraining" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="expectedresultsdate" class="form-label">Do you have a specific event / date you want to achieve these by? (e.g. wedding, beach holiday, etc)</label>
+                <textarea name="expectedresultsdate" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Please rate your motivational level to do what it takes to reach your goal</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="goalmotivation" value="1">
+                    <label for="goalmotivation" class="form-check-label">1</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="goalmotivation" value="2">
+                    <label for="goalmotivation" class="form-check-label">2</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="goalmotivation" value="3">
+                    <label for="goalmotivation" class="form-check-label">3</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="goalmotivation" value="4">
+                    <label for="goalmotivation" class="form-check-label">4</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="goalmotivation" value="5">
+                    <label for="goalmotivation" class="form-check-label">5</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="goalmotivation" value="6">
+                    <label for="goalmotivation" class="form-check-label">6</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="goalmotivation" value="7">
+                    <label for="goalmotivation" class="form-check-label">7</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="goalmotivation" value="8">
+                    <label for="goalmotivation" class="form-check-label">8</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="goalmotivation" value="9">
+                    <label for="goalmotivation" class="form-check-label">9</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="goalmotivation" value="10">
+                    <label for="goalmotivation" class="form-check-label">10</label>
+                </div>
+            </div>
+        </div>
+        <div class="formstep">
+            <h4 class="text-center mb-3">Fitness and Movement</h4>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Are you currently exercising?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="currentlyexercising" value="yes">
+                    <label for="currentlyexercising" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="currentlyexercising" value="no">
+                    <label for="currentlyexercising" class="form-check-label">No</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">If not: any previous regular exercise?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="previousexercise" value="yes">
+                    <label for="previousexercise" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="previousexercise" value="no">
+                    <label for="previousexercise" class="form-check-label">No</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">If you currently exercise, would you say your routine is:</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="exerciseefficiency" value="ineffective">
+                    <label for="exerciseefficiency" class="form-check-label">Ineffective</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="exerciseefficiency" value="effective">
+                    <label for="exerciseefficiency" class="form-check-label">Effective</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="exerciseefficiency" value="veryeffective">
+                    <label for="exerciseefficiency" class="form-check-label">Very Effective</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="exerciseroutine" class="form-label">Briefly describe your exercise routine</label>
+                <textarea name="exerciseroutine" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">How often do you train?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="trainingweeklycount" value="1-2time/week">
+                    <label for="trainingweeklycount" class="form-check-label">1-2time/week</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="trainingweeklycount" value="2-3time/week">
+                    <label for="trainingweeklycount" class="form-check-label">2-3time/week</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="trainingweeklycount" value="3-4time/week">
+                    <label for="trainingweeklycount" class="form-check-label">3-4time/week</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="trainingweeklycount" value="5+time/week">
+                    <label for="trainingweeklycount" class="form-check-label">5+time/week</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">How would you rate your present level of fitness?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="currentfitnesslevel" value="unfit">
+                    <label for="currentfitnesslevel" class="form-check-label">Unfit</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="currentfitnesslevel" value="moderatelyfit">
+                    <label for="currentfitnesslevel" class="form-check-label">Moderately Fit</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="currentfitnesslevel" value="trained">
+                    <label for="currentfitnesslevel" class="form-check-label">Trained</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="currentfitnesslevel" value="highlytrained">
+                    <label for="currentfitnesslevel" class="form-check-label">Highly Trained</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Where do you exercise?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="exerciselocation" value="gym">
+                    <label for="exerciselocation" class="form-check-label">Gym</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="exerciselocation" value="home">
+                    <label for="exerciselocation" class="form-check-label">Home</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="exerciselocation" value="outdoors">
+                    <label for="exerciselocation" class="form-check-label">Outdoors</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="exerciselocation" value="other">
+                    <label for="exerciselocation" class="form-check-label">Other</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Do you participate in any particular sport?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="currentsports" value="yes">
+                    <label for="currentsports" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="currentsports" value="no">
+                    <label for="currentsports" class="form-check-label">No</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="movementrestriction" class="form-label">Describe any issues you have that restricts your movement during exercise</label>
+                <textarea name="movementrestriction" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="exercisepointofdislike" class="form-label">What did/do you like the least about exercise?</label>
+                <textarea name="exercisepointofdislike" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="exercisepointofenjoyment" class="form-label">What did/do you like about exercise?</label>
+                <textarea name="exercisepointofenjoyment" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Do you consciously look to take the active option such as taking stairs rather than lifts?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="stairsorlift" value="alway">
+                    <label for="stairsorlift" class="form-check-label">Always</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="stairsorlift" value="often">
+                    <label for="stairsorlift" class="form-check-label">Often</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="stairsorlift" value="sometimes">
+                    <label for="stairsorlift" class="form-check-label">Sometimes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="stairsorlift" value="never">
+                    <label for="stairsorlift" class="form-check-label">Never</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Do you find alternative ways of staying active when your regular routine is <br> compromised due to external factors such as poor weather or being on holiday?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="alternateactivitychoices" value="always">
+                    <label for="alternateactivitychoices" class="form-check-label">Always</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="alternateactivitychoices" value="often">
+                    <label for="alternateactivitychoices" class="form-check-label">Often</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="alternateactivitychoices" value="sometimes">
+                    <label for="alternateactivitychoices" class="form-check-label">Sometimes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="alternateactivitychoices" value="never">
+                    <label for="alternateactivitychoices" class="form-check-label">Never</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Have you trained with a personal trainer before?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="personaltrainer" value="yes">
+                    <label for="personaltrainer" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="personaltrainer" value="no">
+                    <label for="personaltrainer" class="form-check-label">No</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="personaltrainerroutine" class="form-label">If yes, what kind of training did you do?</label>
+                <textarea name="personaltrainerroutine" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <label for="personaltrainerexperience" class="form-label">What was your experience with your previous trainer?</label>
+                <textarea name="personaltrainerexperience" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">What equipment do you have access to at home?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="homeequipment" value="dumbells">
+                    <label for="homeequipment" class="form-check-label">dumbells</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="homeequipment" value="barbells">
+                    <label for="homeequipment" class="form-check-label">barbells</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="homeequipment" value="cardiomachines">
+                    <label for="homeequipment" class="form-check-label">cardiomachines</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="homeequipment" value="weightbench">
+                    <label for="homeequipment" class="form-check-label">Weight Bench</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="homeequipment" value="mats">
+                    <label for="homeequipment" class="form-check-label">Mats</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="homeequipment" value="kettlebells">
+                    <label for="homeequipment" class="form-check-label">Kettle Bells</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="homeequipment" value="resistancebands">
+                    <label for="homeequipment" class="form-check-label">Resistance Bands</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="homeequipment" value="other">
+                    <label for="homeequipment" class="form-check-label">Other</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">At what times during the day would you prefer to train?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="trainingschedule" value="morning">
+                    <label for="trainingschedule" class="form-check-label">Morning</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="trainingschedule" value="midday">
+                    <label for="trainingschedule" class="form-check-label">Midday</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="trainingschedule" value="afternoon">
+                    <label for="trainingschedule" class="form-check-label">Afternoon</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="trainingschedule" value="evening">
+                    <label for="trainingschedule" class="form-check-label">Evening</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">How often do you want to do Personal Training a week?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="personaltrainingschedule" value="1day">
+                    <label for="personaltrainingschedule" class="form-check-label">1 day</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="personaltrainingschedule" value="2days">
+                    <label for="personaltrainingschedule" class="form-check-label">2 days</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="personaltrainingschedule" value="3days">
+                    <label for="personaltrainingschedule" class="form-check-label">3 days</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="personaltrainingschedule" value="4days">
+                    <label for="personaltrainingschedule" class="form-check-label">4 days</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="personaltrainingschedule" value="5days">
+                    <label for="personaltrainingschedule" class="form-check-label">5 days</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="personaltrainingschedule" value="6days">
+                    <label for="personaltrainingschedule" class="form-check-label">6 days</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="personaltrainingschedule" value="7days">
+                    <label for="personaltrainingschedule" class="form-check-label">7 days</label>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="personaltrainerexpectations" class="form-label">What are your expectations on me as your Personal Trainer?</label>
+                <textarea name="personaltrainerexpectations" class="form-control"></textarea>
+            </div>
+            <div class="mb-4">
+                <p class="mb-3 me-4">Can you accept responsibility for the way your body is today and <br> understand that, while your old habits don't make you a bad person, they still need to be changed?</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="personalresponsibility" value="yes">
+                    <label for="personalresponsibility" class="form-check-label">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" name="personalresponsibility" value="no">
+                    <label for="personalresponsibility" class="form-check-label">No</label>
+                </div>
+            </div>
+        </div>
+    
+        <div class="d-flex gap-3">
+            <button class="btn btn-primary" type="button" id="prevbutton" onclick="prevStep()">Prev</button>
+            <button class="btn btn-primary" type="button" id="nextbutton" onclick="nextStep()">Next</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    let stepPosition = 0
+    const steps = document.getElementsByClassName("formstep")
+    const nextbutton = document.getElementById("nextbutton")
+    const prevbutton = document.getElementById("prevbutton")
+    prevbutton.style.display = "none"
+
+    function handleForm() {
+        console.log(stepPosition)
+        for (let x = 0; x < steps.length; x++) {
+            if (x === stepPosition) {
+                steps[x].style.display = "block"
+            } else {
+                steps[x].style.display = "none"
+            }
+        }
+    }
+    handleForm()
+
+    function nextStep() {
+        if (stepPosition === (steps.length - 1)) {
+            nextbutton.style.display = "none"
+        } else {
+            stepPosition += 1
+            nextbutton.style.display = "block"
+            prevbutton.style.display = "block"
+        }
+
+        handleForm()
+    }
+
+    function prevStep() {
+        if (stepPosition === 0) {
+            prevbutton.style.display = "none"
+        } else {
+            stepPosition -= 1
+            nextbutton.style.display = "block"
+            prevbutton.style.display = "block"
+        }
+
+        handleForm()
+    }
+</script>
+
+{% endblock %}

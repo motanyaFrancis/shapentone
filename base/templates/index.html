@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+{% endblock %}
+{% load crispy_forms_tags %}
+{% block body %}
+{% include 'header.html' %}
+<style>
+  .card-price {
+    font-size: 2em;
+    color: #afca0b;
+    font-weight: 900;
+    font-family: sans-serif;
+  }
+
+  .year {
+    font-size: 50%;
+    color: #6b6b6f;
+    font-weight: 700;
+    margin-top: 19px;
+    margin-left: -10px;
+  }
+</style>
+
+<!-- Header -->
+<section class="header">
+  <div class="container d-flex justify-content-center align-items-center">
+    <div class="text">
+      <h1 class="mb-3">
+        Complete Daily <br />
+        <span>Workout</span> Anywhere
+      </h1>
+
+      <p class="mb-3">
+        Guided workouts and clear exercise illustrations that are easy to follow with confidence
+      </p>
+
+      <a href="#pricing-tables" class="btn btn-primary px-5 py-3 rounded-5 mt-4">Get Started</a>
+
+
+    </div>
+
+    <div class="visual">
+      <img src="{% static 'img/image_1.png' %}" alt="" />
+    </div>
+  </div>
+</section>
+<!-- End Header -->
+{% include 'newsletter.html' %}
+<!-- Why Us -->
+<div class="section" id="why-us">
+  <div class="container d-flex gap-5 justify-content-center align-items-center">
+    <div class="visual">
+      <img src="{% static 'img/fitness_5.png' %}" alt="" />
+    </div>
+    <div class="text">
+      <h1 class="primary" style="margin-bottom: 1em; color: #afca0b;">Why Choose Us?</h1>
+      <p class="tertiary mb-3">Flexible scheduling.</p>
+      <p class="tertiary mb-3">
+        Guidance, support, accountability & motivation to help achieve your goals
+      </p>
+      <p class="tertiary mb-3">
+        Safe, effective and realistic workout routines
+      </p>
+      <p class="tertiary mb-3">
+        Consistent, engaging experience you will love
+      </p>
+    </div>
+
+  </div>
+</div>
+<!-- End Why Us -->
+
+<!-- pricing table  -->
+<section id="pricing-tables">
+  <div class="container mb-3">
+    <div class="row justify-content-center ">
+      {% for data in subscriptions %}
+      {% if data.active == True %}
+      <div
+        class="col-md-3 col-sm-6 col-11 mt-4 color-{%if data.amount == 1000 %}1{% elif data.amount == 3000 %}2{% elif data.amount == 12000 %}3{% elif data.amount == 12000 %}4{%endif%}">
+        <div class="single-table text-center">
+          <div class="plan-header">
+            <h3>{{data.name}}</h3>
+            <p></p>
+            {%if data.amount == 1000 %}
+            <img height="100"
+              src="https://expl-media.azureedge.net/mediacontainer/medialibraries/explore/explore-media-v2/icons/explore_loyalty_club_bronze.png"
+              width="140" />
+            {% elif data.amount == 3000 %}
+            <img height="100"
+              src="https://expl-media.azureedge.net/mediacontainer/medialibraries/explore/explore-media-v2/icons/explore_loyalty_club_sil.png"
+              width="140" />
+            {% elif data.amount == 12000 %}
+            <img height="100"
+              src="https://expl-media.azureedge.net/mediacontainer/medialibraries/explore/explore-media-v2/icons/explore_loyalty_club_gold.png"
+              width="140" />
+            {% elif data.amount == 25000 %}
+            <img height="100"
+              src="https://expl-media.azureedge.net/mediacontainer/medialibraries/explore/explore-media-v2/icons/explore_loyalty_club_platinum.png"
+              width="140" />
+            {%endif%}
+
+          </div>
+          <div class="card-price my-3">
+            <p>
+              <span>KES {{data.amount|floatformat:"0"}}</span>
+              <span class="year">/month</span>
+            </p>
+          </div>
+
+          <ul>
+
+            {% for feature in data.subscriptionfeatures_set.all %}
+            <li>
+              <img src="{% static 'logo/check.png' %}" alt="" style="height: 1em; margin-top: 5px;">
+              <p>{{feature.title}}</p>
+            </li>
+            {% endfor %}
+            <!-- <li>
+              <img src="{% static 'logo/check.png' %}" alt="" style="height: 1em; margin-top: 5px;">
+              <p>Get early access to discounts and special offers</p>
+            </li>
+            <li>
+              <img src="{% static 'logo/check.png' %}" alt="" style="height: 1em; margin-top: 5px;">
+              <p>Receive exclusive discounts with select partners</p>
+            </li> -->
+          </ul>
+        </div>
+        <div class="container d-flex justify-content-center">
+          {% if user.is_authenticated %}
+          <a href="{% url 'package_details' data.id %}" class="btn btn-primary px-5 py-3 rounded-5 mt-auto ">Get
+            Started</a>
+
+          {% else%}
+          <a href="/login/" class="btn btn-primary px-5 py-3 rounded-5 mt-auto ">Get Started</a>
+          {%endif%}
+        </div>
+      </div>
+      {%endif%}
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<!-- end priceing table -->
+<!-- Explore -->
+<div class="section" id="explore">
+  <div class="container d-flex gap-5 justify-content-center align-items-center">
+    <div class="visual">
+      <img src="{% static 'img/fitness-4.jpg' %}" alt="" />
+    </div>
+    <div class="text">
+      <h2 class="primary mb-4">
+        Cutting Edge <br />
+        Online Personal Training
+      </h2>
+      <p class="tertiary mb-4">
+        Offer a cocktail of traditional personal training and modern day technology to experience a personal touch
+        online
+      </p>
+
+      <a href="#pricing-tables" class="btn btn-primary px-5 py-3 rounded-5 mt-4 ">Get Started</a>
+    </div>
+  </div>
+</div>
+<!-- End Explore -->
+
+
+
+<!-- latest articles -->
+{% if posts %}
+<div class="container latest_articles">
+  <div class="section-title-wrapper py-4">
+      <h3>Latest Articles</h3>
+  </div>
+  <div class="row">
+      {% for article in posts %}
+      <div class="col-12 col-md-6 col-xl-4 mb-4">
+          <a href="{% url 'article_detail' article.slug %}">
+              <div class="card post-card mr-3 ">
+                  <div class="wrapper-article-image">
+                      <div class="button category-tag image-overlay">
+                          <div class="post-category">Blog</div>
+                      </div>
+                      <img alt="" src="{{article.image.url}}"
+                          sizes="(max-width: 479px) 100vw, (max-width: 767px) 45vw, 30vw"
+                          srcset="{{article.image.url}} 1044w" class="article-image">
+                  </div>
+                  <div class="card-body">
+                      <div class="button category-tag main-topic">
+                          <div>{{article.category}}</div>
+                      </div>
+                      <h4 class="article-heading">{{article.title}} </h4>
+
+                      <div class="min-read">{{article.date_created|date}}</div>
+                  </div>
+              </div>
+          </a>
+      </div>
+      {%endfor%}
+
+  </div>
+</div>
+{%endif%}
+<!-- Discount -->
+<div class="section" id="discount">
+  <div class="container d-flex gap-5 justify-content-center align-items-center">
+    <div class="visual">
+      <img src="{% static 'img/fitness-6.jpg' %}" alt="" />
+    </div>
+    <div class="text">
+      <h2 class="primary mb-5">
+        Sign Up to unlock your full potential
+      </h2>
+
+      <p class="tertiary mb-5">
+        We focus on your needs to create an all-round workout plan that naturally fits into your life. So you can get
+        the body and health you want, at a pace that works for you.
+      </p>
+
+      <a href="#pricing-tables" class="btn btn-primary px-5 py-3 rounded-5 mt-4">Book Now</a>
+    </div>
+  </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!-- End Discount -->
+
+
+{% include 'footer.html' %}
+{% endblock %}

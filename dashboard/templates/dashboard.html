@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+{% include 'header2.html' %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+<div class="container-fluid">
+
+    {% block dashboard %}
+    <div class="dash-nav">
+        <ul class="nav nav-tabs nav-justified">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#2a">All Programs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " aria-current="page" data-bs-toggle="tab" href="#1a">My Programs</a>
+            </li>
+        </ul>
+        <div class="tab-content clearfix">
+            <div class="tab-pane" id="1a">
+                <div class="programs p-3">
+                    {% if user_program %}
+                    {% for program in user_program %}
+                    <div class="program-top">
+                        <span>My Programs</span>
+
+                        <h3 class="header-4 mb-0">{{ program.program.program }}</h3>
+                        <h5 class="header-5">Category: {{ program.program.category }}</h5>
+
+                    </div>
+                    <div class="program-content mb-5 mt-4">
+                        <h4 class="header-4 pt-2">
+                            Workouts
+                            <a href="#"><i class="las la-info-circle" title="info"></i></a><a href=""><i
+                                    class="las la-trophy ms-2"></i></a>
+                        </h4>
+
+                        <div class="program-content-cards">
+                            <div class="carousel-wrapper d-flex justify-content-start gap-3">
+                                {% for list in program.program.workout_set.all %}
+                                <div>
+                                    <a href="{% url 'workout' list.slug %}">
+                                        <div class="program-image"
+                                            style="background-image: url('{{ list.workout.image.url }}');">
+                                        </div>
+                                        <div class="m-3">
+                                            <h5>{{ list.program.program.title }}</h5>
+                                            <p class="program-title">{{ list.workout.title }}</p>
+                                            <p class="tile-detail">Victor Fitness</p>
+                                        </div>
+                                    </a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="tab-pane active" id="2a">
+
+                <div class="programs p-3">
+                    <div class="program-top">
+                        <h3 class="header-1 mb-0">On Demand</h3>
+                        <h5>Explore our collection of workouts.</h5>
+                    </div>
+                    {% for program in programs %}
+                    <div class="program-content mb-5 mt-4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <h4 class="header-4 pt-2">{{program.program}}</h4>
+                                <h5 class="header-5">Category: {{ program.category }}</h5>
+                            </div>
+                            <div>
+                                <a href="{% url 'program_details' program.id %}" class="header-5 m-3">See All <i
+                                        class="las la-angle-right"></i></a>
+                            </div>
+                        </div>
+                        <div class="program-content-cards mt-4">
+                            <div class="carousel-wrapper d-flex justify-content-start gap-3">
+                                {% for list in program.workout_set.all %}
+                                <div>
+                                    <a href="{% url 'workout' list.slug %}">
+                                        <div class="program-image"
+                                            style="background-image: url('{{ list.workout.image.url }}');">
+                                        </div>
+                                        <div class="m-3">
+                                            <p class="program-title">{{ list.workout }}</p>
+                                            <p class="tile-detail">Victor Fitness</p>
+                                        </div>
+                                    </a>
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</div>
+
+
+{% include 'footer.html' %}
+{% endblock %}

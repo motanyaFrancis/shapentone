@@ -1,0 +1,15 @@
+victor/.env
+venv/
+tests.py
+*.pyc
+migrations/
+.vscode/
+*.sqlite3
+.idea/
+media/*
+.env
+.DJANGO_SECRET_KEY
+dummy.html
+staticfiles/
+web.config
+logs/*

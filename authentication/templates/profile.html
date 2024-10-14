@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/auth.css' %}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/material-ui/4.12.4/index.js"
+    integrity="sha512-wEnX3bNd/CdyrOFR0KIGlHihK/w9x3/It8Vc18aymEF/F/f1q0Mq8T+GSxF1wYUACLEGECapuIYQdQlKY1LBJw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+{% endblock %}
+
+{% block body %}
+{% if user.is_authenticated %}
+
+<div class="container-fluid">
+    <div class="position-absolute home-link">
+        <a href="/dashboard/">
+            <div class="fs-4  m-2 p-2 ">
+                <i class="las la-arrow-left"></i>
+            </div>
+        </a>
+    </div>
+    <div class="position-absolute home-link top-0 end-0">
+        <a href="/logout/">
+            <div class="fs-4  m-3 p-2  " title="Log Out">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </div>
+        </a>
+    </div>
+    <h1 class="text-center pt-4">Profile</h1>
+    <div class="profile-image mx-auto">
+        {% if person.avatar %}
+        <img src="{{person.avatar.url}}" class="rounded-circle" alt="profile picture">
+        {% else %}
+        <img src="{% static 'logo/user.png' %}" alt="profile logo">
+        {% endif %}
+    </div>
+
+    <div class="d-flex flex-column align-items-center mt-4">
+        {% if user.first_name and user.last_name %}
+        <h4 class="text-center"><br>{{ user.full_name }}</h4>
+        {% else %}
+        <h4>Welcome, {{ user.username }}</h4>
+        {% endif %}
+        <p class="fw-bold text-secondary">beginner</p>
+        <p class="text-secondary mt-4">Are you ready to Shape Up? Let's get started by selecting your program below:</p>
+    </div>
+
+    <div class="row w-75 mx-auto gap-4 mt-5">
+        <div class="col gap-3">
+            <div class="d-flex justify-content-between py-4">
+                <h4>My Profile</h4>
+                <a href="/profile/settings/" class="btn btn-outline-danger rounded-pill px-4 border-2">
+                    Edit
+                </a>
+                {% if user.is_staff == True %}
+                <a href="/intake_questionare/" class="btn btn-outline-danger rounded-pill px-4 border-2">
+                    Intake Questionare
+                </a>
+                {%endif%}
+            </div>
+            <div class="d-flex justify-content-between p-3 mb-2 border rounded-top">
+                <p>Email</p>
+                <p class="text-secondary">{{ user.email }}</p>
+            </div>
+            <div class="d-flex justify-content-between p-3 mb-2 border">
+                <p>Timezone</p>
+                <p class="text-secondary">EAT/Nairobi</p>
+            </div>
+            <!--<div class="d-flex justify-content-between p-3 mb-2 border rounded-bottom mb-4">
+                                <p>Diet</p>
+                                <p class="text-secondary">Standard</p>
+                            </div>-->
+
+            <div class="d-flex justify-content-between p-3 mb-2 border rounded-top">
+                <p>Height</p>
+                <p class="text-secondary">{{ user.height }}cm</p>
+            </div>
+            <div class="d-flex justify-content-between p-3 mb-2 border">
+                <p>Starting Weight</p>
+                <p class="text-secondary">{{ user.starting_weight }}kg</p>
+            </div>
+            <div class="d-flex justify-content-between p-3 mb-2 border">
+                <p>Current Weight</p>
+                <p class="text-secondary">{{ user.current_weight }}kg</p>
+            </div>
+            <div class="d-flex justify-content-between p-3 mb-2 border rounded-bottom mb-4">
+                <p>Goal Weight</p>
+                <p class="text-secondary">{{ user.Target_weight }}kg</p>
+            </div>
+
+            <div class="d-flex justify-content-between p-3 mb-2 border rounded-top">
+                <p>Language</p>
+                <p class="text-secondary">English</p>
+            </div>
+            <div class="d-flex justify-content-between p-3 mb-2 border rounded-bottom mb-4">
+                <p>Date of Birth</p>
+                <p class="text-secondary">{{ user.date_of_birth }}</p>
+            </div>
+        </div>
+
+        <div class="col">
+            
+            <div class="d-flex justify-content-between py-4">
+                <h4>My Program</h4>
+                <button class="btn btn-outline-danger rounded-pill px-4 border-2">change</button>
+            </div>
+            <div class="d-flex justify-content-between p-3 mb-2 border rounded-top">
+                <p>Program</p>
+                <p class="text-secondary">High Intensity</p>
+            </div>
+            <div class="d-flex justify-content-between p-3 mb-2 border rounded-bottom mb-4">
+                <p>Current Program</p>
+                <p class="text-secondary">Beginner</p>
+            </div>
+
+            <div class="d-flex justify-content-between py-4">
+                <h4>My Subscription</h4>
+                <button class="btn btn-outline-danger rounded-pill px-4 border-2">Edit</button>
+            </div>
+            {% if user_subscription %}
+            {% for sub in user_subscription %}
+            <div class="d-flex justify-content-between p-3 mb-2 border rounded-top">
+                <p>Level</p>
+                <p class="text-secondary">{{sub.subscription}}</p>
+            </div>
+            <div class="d-flex justify-content-between p-3 mb-2 border rounded-top">
+                <p>Next Billing date</p>
+                <p class="text-secondary">{{sub.end_date}}</p>
+            </div>
+            <div class="d-flex justify-content-between p-3 mb-2 border rounded-top">
+                <p>Active</p>
+                <p class="text-secondary">{{sub.active}}</p>
+            </div>
+            <div class="d-flex justify-content-between p-3 mb-2 border rounded-bottom mb-4">
+                <p>Payment Method</p>
+                <a href="{% url 'payment' sub.id %}">
+                    <svg width="150" height="24" viewBox="0 0 2500 400" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <clipPath clipPathUnits="userSpaceOnUse" id="a">
+                                <path d="M0 1080h1920V0H0Z" />
+                            </clipPath>
+                        </defs>
+                        <path d="M0 0v-108.313h37.113v-17.9H-19.05V0Z"
+                            style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                            transform="matrix(1.33333 0 0 -1.33333 136.061 110.81)" />
+                        <path d="M184.275 480.825h-19.05v126.213h19.05z"
+                            style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                            transform="matrix(1.33333 0 0 -1.33333 -10.667 920.193)" />
+                        <g clip-path="url(#a)" transform="matrix(1.33333 0 0 -1.33333 -10.667 920.193)">
+                            <path
+                                d="M0 0h7.113c17.5 0 26.237 6.725 26.237 20.188 0 13.025-9.025 19.538-27.063 19.538H0Zm0-17.65v-51.262h-19.05V57.3H2.537c10.575 0 18.563-.737 23.95-2.212 5.45-1.475 10.237-4.25 14.387-8.338 7.25-7.088 10.875-16.025 10.875-26.813 0-11.55-3.875-20.712-11.612-27.462C32.4-14.287 21.962-17.663 8.825-17.663Z"
+                                style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                transform="translate(233.648 549.733)" />
+                            <path
+                                d="m0 0-18.725 42.912L-38.338 0Zm7.763-17.9h-54.038l-14.063-30.65h-20.525L-18.4 85.6 41.85-48.562H21.012Z"
+                                style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                transform="translate(362.154 529.378)" />
+                            <path d="M0 0v134.8l92.05-96.3v87.713h19.05v-133.9L19.05 88.375V0Z"
+                                style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                transform="translate(471.45 480.82)" />
+                            <path
+                                d="m0 0-18.725 42.912L-38.338 0Zm7.763-17.9h-54.038l-14.063-30.65H-80.85L-18.388 85.6l60.25-134.162h-20.85Z"
+                                style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                transform="translate(680.152 529.378)"></path>
+                            <path
+                                d="M0 0c25.738-6.475 47.337 26.8 47.337 26.8 21.275-33.237 38.5-6.475 38.5-6.475S69.95-6.475 19.375-5.412z"
+                                style="fill:#9f4a3e;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                transform="translate(1034.372 544.11)" />
+                            <path d="M0 0s-36.712-75.638-99.8-55.613c0 0 115.162-35.5 157.375 27.837z"
+                                style="fill:#da3939;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                transform="translate(1133.806 599.265)" />
+                            <path
+                                d="M0 0v-103.888h-117.788v125.8a60.75 60.75 0 0 0-7.538 2.3v-140.8c0-10.65 7.412-19.3 16.563-19.3h99.75c9.137 0 16.55 8.65 16.55 19.3V5.187C5.063 3.35 2.163 1.412 0 0"
+                                style="fill:#e5eadb;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                transform="translate(1169.904 546)" />
+                            <path
+                                d="M0 0h117.8v-62.75l7.525-4.35V1.725c0 10.662-7.412 19.3-16.55 19.3H9.025c-9.137 0-16.55-8.637-16.55-19.3v-88.138c3.362.475 5.913 1.262 7.525 1.9z"
+                                style="fill:#e5eadb;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                transform="translate(1052.107 649.158)" />
+                            <path
+                                d="M0 0v-75.487h-46.262V-7.55c0 18.988-7.8 27.025-19.975 27.025-13.388 0-23.125-9.012-23.125-29.462v-65.5h-46.263V-7.55c0 18.988-7.55 27.025-19.975 27.025-13.637 0-23.375-9.012-23.375-29.462v-65.5h-46.275V56.488h44.075V42.6c9.988 10.713 23.863 16.075 39.45 16.075 18.012 0 33.35-6.575 42.613-20.7 10.462 13.15 26.775 20.7 45.775 20.7C-22.65 58.675 0 40.912 0 0"
+                                style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                transform="translate(1024.46 558.283)" />
+                            <path
+                                d="M0 0c0 19.963-12.175 31.412-27.763 31.412-15.575 0-27.763-11.45-27.763-31.412 0-19.975 12.175-31.412 27.763-31.412S0-19.975 0 0m46.75 0c0-41.887-28.975-68.188-64.775-68.188-15.337 0-27.75 4.625-36.763 13.875v-58.925h-46.262V65.975h44.075V52.838C-48.2 63.3-35.3 68.175-18.025 68.175c35.8 0 64.775-26.288 64.775-68.175"
+                                style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                transform="translate(1302.8 548.788)" />
+                            <path
+                                d="M0 0h54.063C51.625 13.887 41.4 22.637 27.025 22.637 12.663 22.637 2.688 13.887 0 0m96.662-24.35H.737c3.887-13.388 15.337-21.188 32.375-21.188 12.9 0 21.425 3.65 30.438 11.45L87.9-59.413C75.237-73.538 56.737-80.851 31.662-80.851c-47 0-77.438 28.975-77.438 68.425 0 39.688 30.925 67.938 72.563 67.938C65.75 55.512 97.4 30.675 97.4-12.9c0-3.413-.488-7.8-.737-11.45"
+                                style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                transform="translate(1408.465 561.45)" />
+                            <path
+                                d="m0 0 13.875 31.65C26.05 24.112 43.825 19.475 59.9 19.475c15.588 0 20.688 3.413 20.688 9.012 0 17.775-77.912-2.438-77.912 50.412 0 24.838 22.887 43.825 64.287 43.825 18.5 0 38.95-3.887 52.1-11.2l-13.875-31.4a77.387 77.387 0 0 1-37.987 9.738c-15.575 0-21.188-4.375-21.188-9.25 0-18.262 77.675 1.462 77.675-50.888 0-24.35-22.4-43.35-65.25-43.35C36.037-13.637 12.912-8.037 0 0"
+                                style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                transform="translate(1516.82 494.243)" />
+                            <path
+                                d="M0 0c0 19.975-12.175 31.163-27.75 31.163-15.588 0-27.763-11.2-27.763-31.163 0-20.213 12.175-31.65 27.763-31.65C-12.175-31.65 0-20.213 0 0m45.538 65.738V-66.225H1.462v13.15C-7.3-63.55-20.213-68.425-37.5-68.425c-35.8 0-64.763 26.3-64.763 68.425 0 41.875 28.975 67.938 64.763 67.938 15.337 0 27.763-4.387 36.775-13.637v11.438z"
+                                style="fill:#39b54a;fill-opacity:1;fill-rule:nonzero;stroke:none"
+                                transform="translate(1754.466 549.032)" />
+                        </g>
+                    </svg>
+                </a>
+            </div>
+            {%endfor%}
+            {%endif%}
+            
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="container mt-4 p-4 pb-5">
+            <div class="text-center gap-3">
+                <p>Joined Shape n' Tone on {{ user.date_joined | date }}</p>
+                <!-- <p>Member ID: 1120098</p> -->
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- User update  Modal -->
+<div class="modal fade" id="userUpdate" tabindex="-1" aria-labelledby="userUpdateLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="userUpdateLabel">Edit your profile</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {% for field in update_form %}
+                    <div class="form-floating mb-1">
+                        {{ field }}
+                        <label for="floatingInputValue">{{field.label}}</label>
+                    </div>
+                    {% endfor %}
+                    <div class="d-flex justify-content-end mt-3 gap-2">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+{% endif %}
+{% endblock %}

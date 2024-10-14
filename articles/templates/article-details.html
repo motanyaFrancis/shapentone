@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+{% endblock %}
+{% block body %}
+{% include 'header.html' %}
+<section class="article_hero">
+  <div class="container my-5 ">
+    <div class="row">
+      <div class="col-lg-6">
+        <img class="w-100 shadow" src="{{article.image.url}}" />
+      </div>
+      <div class="col-lg-6">
+        <div class="p-5 mt-4">
+          <div class="button category-tag main-topic">
+            <div>{{article.category}}</div>
+          </div>
+          <h1 class="single-article-heading">{{article.title}}</h1>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="article_body mt-5">
+  <div class="container">
+    <div class="row gap-5">
+
+      <div class="col-sm-7 blog-main">
+
+        <div class="blog-post">
+          <p class="blog-post-meta">{{article.date_created|date}}<a href="#"></a></p>
+            <hr>
+            <div class="">
+              {{article.content|safe}}
+            </div>        
+        </div>
+
+      </div><!-- /.blog-main -->
+
+      <div class="col-sm-4 col-sm-offset-1 blog-sidebar mt-4">
+        <div class="sidebar-module">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="sidebar widget">
+                <div class="sidebar_title">
+                  <div>Recent Post</div>
+                </div>
+                <ul>
+                  {% for latest_article in latest_articles %}
+                  <li>
+                    <div class="sidebar-thumb">
+                      <img class="animated rollIn"
+                        src="{{latest_article.image.url}}"
+                        alt="" />
+                    </div><!-- .Sidebar-thumb -->
+                    <div class="sidebar-content">
+                      <h5 class="animated bounceInRight"><a href="{% url 'article_detail' latest_article.slug %}">{{latest_article.title}}</a></h5>
+                    </div><!-- .Sidebar-thumb -->
+                    <div class="sidebar-meta">
+                      <span class="time"><i class="fa fa-clock-o"></i>{{latest_article.date_created}}</span>
+                      <!-- <span class="comment"><i class="fa fa-comment"></i> 10 comments</span> -->
+                    </div><!-- .Sidebar-meta ends here -->
+                  </li><!-- .Li ends here -->
+                  {%endfor%}
+                 
+                </ul><!-- .Ul ends here -->
+              </div><!-- .Widget ends here -->
+            </div><!-- .Col ends here -->
+            <div class="col-md-4"></div><!-- .Col ends here -->
+          </div><!-- .Row ends here -->
+        </div>
+      </div><!-- /.blog-sidebar -->
+
+    </div><!-- /.row -->
+
+  </div><!-- /.container -->
+
+</section>
+{% include 'newsletter.html' %}
+{% include 'footer.html' %}
+{%endblock%}

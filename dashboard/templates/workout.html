@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Workout{% endblock %}
+{% block csslink %}
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock %}
+{% block body %}
+    <style>
+
+        .home-link{
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: white;
+            
+        }
+        .home-link:hover{
+            background-color: #556506;
+            color: white;
+        }
+        .home-link a{
+            color: #556506;
+        }
+        .home-link a:hover {
+            color: #fff;
+        }
+    </style>
+    <section class="workout">
+        <div class="position-absolute home-link m-2 p-auto">
+            <a href="javascript:history.back()" class="position-relative m-auto">
+                <div class="fs-4">
+                    <i class="las la-arrow-left m-2"></i>
+                </div>
+            </a>
+        </div>
+        <div class="workout__header"
+             style="background-image: url('{{ object.workout.image.url }}'); background-size: cover;background-position: center">
+        </div>
+        <div class="container">
+
+            <div class="program-top pt-4">
+                <span>{{ object.program }}</span>
+                <h3 class="header-1 mb-2">{{ object.workout }}</h3>
+                <h5 class="mb-3">{{ object.workout.description|safe}}</h5> <br>
+                <h5>{{ circuits|length }} Circuit{% if circuits|length > 1 %}s{%endif%}</h5>
+                <!-- <h5>{{ circuits|length }} Circuit{% if circuits|length > 1 %}s{%endif%} • {{ exercises|length }} Exercise{% if exercises|length > 1 %}s{%endif%} • 25-30 minutes</h5> -->
+            </div>
+            <div class="program-content mt-4">
+                <h4 class="header-4 pt-2 mb-0">What You'll Need</h4>
+                <div class="program-top ">
+                    <h5>{{object.equipment_set.all|length}} Item{% if object.equipment_set.all|length > 1 or object.equipment_set.all|length == 0 %}s{%endif%} </h5>
+                </div>
+                <div class="equipments_list d-flex justify-content-start p-1 my-2 mx-auto">
+                    {% for equipment in object.equipment_set.all %}
+                    <div class="thumbnails">
+                        <img src="{{equipment.equipment.image.url }}" alt="">
+                        <div class="black"></div>
+                        <div class="title">{{ equipment.equipment }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="program-content mb-0 mt-1">
+                <h4 class="header-4 pt-2 mb-0">What You'll do</h4>
+                <div class="program-top ">
+                    <h5>{{ circuits|length }} Section{% if circuits|length > 1 %}s{%endif%} </h5>
+                </div>
+            </div>
+            {% for circuit in circuits %}
+                <div class="program-content mb-5 mt-1">
+                    <h4 class="header-4 pt-2 mb-0">{{ circuit.name }}</h4>
+                    <div class="program-top ">
+                        <h5> Exercises </h5>
+                    </div>
+
+                    <div class="program-content-cards circuit">
+                        <div class=" d-flex flex-column">
+                            {% for list in circuit.exercise_set.all %}
+                                <div class="col-md-6 ">
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#exerciseModal{{ list.slug }}">
+                                        <div class="card w-100 mb-3">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-center flex-row gap-4">
+                                                    <div class="card-left">
+                                                       
+                                                        {% if list.exercise.extension == '.mp4' or list.exercise.extension == '.webm' or list.exercise.extension == '.ogg' %}
+                                                        <video >
+                                                            <source src="{{ list.exercise.image.url }}" type="video/mp4">
+                                                        </video>
+                                                        {% else %}
+                                                        <img src="{{ list.exercise.image.url }}"
+                                                             alt="">
+                                                        {% endif %}
+                                                    </div>
+                                                    <div class="card-right">
+                                                        <div class="text-content">
+                                                            <h4>{{ list.exercise }}</h4>
+                                                            <p class="tile-detail">
+                                                                {% if list.duration > 0 %}
+                                                                {{ list.duration }} secs | {{ list.duration_descripion }}
+                                                                {% elif list.reps > 0 %}
+                                                                {{ list.reps }} reps |  {{ list.reps_description }}
+                                                                {%else%}
+                                                                not set
+                                                                {%endif%}
+                                                            </p>
+                                                        </div>
+                                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                                             x="0px" y="0px" width="24px"
+                                                             height="24px" viewBox="0 0 24 24"
+                                                             class="size-15 nc-icon fill-gray">
+                                                            <g transform="translate(0, 0)">
+                                                                <path fill="#000000"
+                                                                      d="M7,23.414L5.586,22l10-10l-10-10L7,0.586l10.707,10.707c0.391,0.391,0.391,1.023,0,1.414L7,23.414z">
+                                                                </path>
+                                                            </g>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exerciseModal{{ list.slug }}" tabindex="-1"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                                        <div class="modal-content">
+                                            <button type="button" class="btn-close align-self-end m-2"
+                                                    data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            <div class="modal-body">
+                                                <div class="d-flex justify-content-center">
+                                                    {% if list.exercise.extension == '.mp4' or list.exercise.extension == '.webm' or list.exercise.extension == '.ogg' %}
+                                                    <video  class="w-50" alt="" controls loop preload="metadata" autoplay>
+                                                        <source src="{{ list.exercise.image.url }}">
+                                                    </video>
+                                                    {% else %}
+                                                    <img src="{{ list.exercise.image.url }}"  class="w-50"  alt="">
+                                                    {% endif %}
+                                                </div>
+                                                <h1 class="modal-title fs-5"
+                                                    id="exampleModalLabel">{{ list.exercise }}</h1>
+                                                {{ list.exercise.description | safe }}
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </section>
+{% endblock %}

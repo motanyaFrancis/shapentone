@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{%block title %}
+Settings
+{% endblock%}
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/material-ui/4.12.4/index.js"
+    integrity="sha512-wEnX3bNd/CdyrOFR0KIGlHihK/w9x3/It8Vc18aymEF/F/f1q0Mq8T+GSxF1wYUACLEGECapuIYQdQlKY1LBJw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% endblock %}
+{% block body %}
+
+<div class="container emp-profile">
+    <form method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
+                        alt="" />
+                    <div class="file btn btn-lg btn-primary">
+                        Change Photo
+                        <input type="file" name="file" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="profile-head">
+                    <!-- <h5>
+                        {{ user.first_name }} {{ user.middle_name }} {{ user.last_name }}
+                    </h5>
+                    <h6>
+                        {{ user.username }}
+                    </h6> -->
+                    <!-- <p class="proile-rating">RANKINGS : <span>8/10</span></p> -->
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab"
+                            aria-controls="profile" aria-selected="false">Edit Profile</a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a class="nav-link " id="home-tab" data-bs-toggle="tab" href="#home" role="tab"
+                                aria-controls="home" aria-selected="true">Change Password</a>
+                        </li> -->
+                        
+                    </ul>
+                </div>
+                <div class="col-md-12 mt-4">
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade " id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <form action="/settings/password_change" method="post" enctype="multipart/form-data">
+                                <div class="row g-3">
+                                    {% csrf_token %}
+                                    {{ reset_password_form|crispy }}
+                                </div>
+    
+                                <div class="d-flex justify-content-end mt-3 gap-2">
+                                    <button type="submit" class="btn btn-primary">Reset Password</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <form action="/profile/settings/" method="post">
+                                <div class="row g-3">
+                                    {% csrf_token %}
+                                    {% crispy form %}
+                                </div>
+                                <div class="d-flex justify-content-end mt-3 gap-2">
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-md-2">
+                <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
+            </div> -->
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+
+            </div>
+           
+        </div>
+    </form>
+</div>
+<footer class="footer  fixed-bottom mt-auto pb-3 bg-light">
+    <hr class="mx-0 px-0">
+            <div class="container">
+                <div class="row mb-2" style="font-size:12px;">
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <div class="pull-left">
+                            <p>&copy; 2020 Shape n' Tone 360</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                        <div class="float-end mr-4 d-flex policy gap-3">
+                            <div><a href="/terms-of-use/">Terms of Use</a></div>
+                            <div><a href="/privacy-policy/">Privacy Policy</a></div>
+                            <div><a href="/cookies-policy/">Cookie Policy</a></div>
+                        </div>
+                    </div>
+                </div>      
+            </div>
+</footer>
+{%endblock%}
+{% for field in form %}
+<div class="col-auto">
+    <label class="small mb-1">{{field.label}}</label>
+    {{ field }}
+</div>
+
+{%endfor%}

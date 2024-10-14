@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activate Email</title>
+    <style>
+        /* Reset some basic styles */
+        body, p, a {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        img {
+            border: 0;
+            display: block;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body style="margin: 0; padding: 0; background-color: #f2f2f2;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #c2c2c2; padding: 15px;">
+        <tr>
+            <td align="center">
+                <!-- Container -->
+                <table width="600" cellpadding="0" cellspacing="0" border="0" style="background-color: #ffffff; border-radius: 10px; overflow: hidden;">
+                    <!-- Header -->
+                    <tr>
+                        <td align="center" style="background-color: #afca0b; color: #ffffff; padding: 10px;">
+                            <h2 style="margin: 0; font-size: 24px;">Activate your account</h2>
+                        </td>
+                    </tr>
+                    <!-- Content -->
+                    <tr>
+                        <td style="padding: 15px;">
+                            <p>Hi {{ user.first_name }},</p>
+                            <p>Thank you for registering. Please click on the link below to activate your account:</p>
+                            <br>
+                            <a href="http://{{ domain }}{% url 'activate' uidb64=uid token=token %}" style="display: inline-block; background-color: #007bff; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Activate my account</a>
+                            <p style="margin-top: 40px;">Or you can copy the link below to your browser:</p>
+                            <p>{{ request.scheme }}://{{ domain }}{% url 'activate' uidb64=uid token=token %}</p>
+                            <br>
+                            <p>If you did not register for this account, please ignore this email.</p>
+                            <br>
+                            <p>Regards,</p>
+                            <p>The Victor Fitness Team</p>
+                        </td>
+                    </tr>
+                    <!-- Footer -->
+                    <tr>
+                        <td align="center" style="padding: 10px; background-color: #f2f2f2; border-top: 1px solid #dcdcdc;">
+                            <p style="margin: 0; font-size: 12px;">© {% now 'Y' %} <a href="https://www.shapentone360.com/" style="color: #007bff; text-decoration: none;">Victor Fitness</a></p>
+                        </td>
+                    </tr>
+                </table>
+                <!-- End Container -->
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>

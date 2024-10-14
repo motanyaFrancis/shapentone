@@ -1,0 +1,249 @@
+@import 'color';
+
+.program-image {
+    width: 20em;
+    aspect-ratio: 3.3 / 2.5;
+    border-radius: 10px;
+    background-size: cover;
+}
+
+.equipments_list{
+    .thumbnails {
+        width: calc(100% / 8);
+        height: 150px;
+        margin: 10px;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        transition: transform .3s;
+      }
+      
+      .thumbnails img {
+        width: 100%;
+        border-radius: 8px;
+        object-fit: cover;
+        object-position: 50% 20%;
+      }
+      
+      .black {
+        text-align: center;
+        border-radius: 8px;
+        background: #000;
+        background-blend-mode: multiply;
+        color: #fff;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        opacity: .7;
+      }
+      
+      .title {
+        color: #fff;
+        font-size: 1.3em;
+        font-weight: 700;
+        align-self: center;
+        position: absolute;
+        z-index: 10;
+      }
+      
+      .black, .title {
+        transition: opacity .3s;
+      }
+      
+      .thumbnails:hover {
+        cursor: pointer;
+        transform: scale(1.05);
+        z-index: 20;
+      }
+      
+      .thumbnails:hover .black,
+      .thumbnails:hover .title {
+        opacity: 0;
+      }
+      
+}
+
+.program-content-cards {
+    width: 100%;
+    overflow-x: scroll;
+
+    & .carousel-wrapper {
+        h5 {
+            color: $base-color;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 0;
+            text-transform: uppercase;
+        }
+    }
+
+    .program-title {
+        font-size: 17px;
+        font-weight: 600;
+    }
+
+    .tile-detail {
+        font-size: 13px;
+        font-weight: 500;
+        color: #808a9f;
+    }
+}
+
+.program-content-cards-alt {
+
+    h2 {
+        font-size: 17px;
+        font-weight: 600;
+
+    }
+
+    p {
+        font-size: 13px;
+    }
+
+    .btn {
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: 600;
+
+        &-light {
+            background-color: white;
+            color: $base-color;
+
+            &:hover {
+                background-color: white;
+                border: none;
+            }
+        }
+    }
+
+    .card {
+        background-color: #f7f7f7;
+        border: none;
+        padding: .5rem;
+        border-radius: 14px;
+    }
+
+
+}
+
+.item {
+    display: flex;
+    align-items: stretch;
+}
+
+.workout-content-block .workout-tile.card.equipment-tile {
+    overflow: hidden;
+    width: 160px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    -ms-box-shadow: none;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+
+    &>.card-section {
+        border-top-left-radius: 14px;
+        border-top-right-radius: 14px;
+        overflow: hidden;
+    }
+
+    .card-section {
+        background-image: none;
+        border-bottom: none;
+        height: 160px;
+        padding: 10px 5px;
+        border-radius: 14px;
+    }
+}
+
+.circuit {
+    .card {
+        padding: 0 1rem 0 0;
+        border-radius: 22px;
+        border: 1px solid #d7dce7;
+        display: flex;
+        align-items: stretch;
+        flex-direction: row;
+
+        &-body {
+            padding: 0;
+        }
+
+        &-left {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: nowrap;
+            height: 80px;
+            width: 96px;
+        }
+
+        &-right {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            h4 {
+                font-size: 17px;
+            }
+        }
+
+        img,
+        video {
+            background-color: #242933;
+            opacity: 1;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 14px;
+            border-bottom-right-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        video {
+            object-fit: cover;
+        }
+    }
+}
+
+.carousel-wrapper {
+    width: max-content;
+}
+
+.program-top {
+    span {
+
+        text-transform: uppercase;
+        color: $base-color;
+        font-size: 11px;
+        font-weight: 600;
+    }
+
+    h5 {
+        display: inline-block;
+        color: #475266;
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    h3 {
+        font-size: 34px;
+        font-weight: 700;
+    }
+}
+
+.workout {
+    & &__header {
+        height: 50vh;
+        text-align: center;
+        padding: auto;
+        background: #afca0b;
+    }
+}

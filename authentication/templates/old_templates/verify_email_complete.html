@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block title %}Verified{% endblock%}
+{% block body %}
+<div class="justify-content-center vh-100">
+    <div class="bg-green"></div>
+    <div class="p-5 text-center form_overlay">
+        <i class="fa-regular fa-circle-check display-1 mb-4"></i>
+        <p> You have successfully verified your e-mail</p>
+        <a href="/dashboard/" type="button" class="btn btn-primary mt-4">Continue</a>
+    </div>
+</div>
+{% endblock %}
